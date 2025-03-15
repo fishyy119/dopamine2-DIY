@@ -1,3 +1,7 @@
+**🐟 This is a personal DIY version based on Dopamine 2.0.10 🐟**
+
+---
+
 ![Dopamine](Dopamine.full.png)
 
 # Dopamine (for Windows)
