@@ -38,14 +38,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.3\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="CSCore">
       <HintPath>..\Dopamine\Libraries\CSCore.dll</HintPath>
     </Reference>
     <Reference Include="CSCore.Ffmpeg">
       <HintPath>..\Dopamine\Libraries\CSCore.Ffmpeg.dll</HintPath>
-    </Reference>
-    <Reference Include="Digimezzo.Foundation.Core">
-      <HintPath>..\Dopamine\Libraries\Digimezzo.Foundation.Core.dll</HintPath>
     </Reference>
     <Reference Include="Digimezzo.Foundation.WPF">
       <HintPath>..\Dopamine\Libraries\Digimezzo.Foundation.WPF.dll</HintPath>
@@ -56,8 +56,8 @@
     <Reference Include="GongSolutions.WPF.DragDrop">
       <HintPath>..\Dopamine\Libraries\GongSolutions.WPF.DragDrop.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NVorbis">
       <HintPath>..\Dopamine\Libraries\NVorbis.dll</HintPath>
@@ -162,6 +162,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -172,6 +173,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\TrackPathGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Digimezzo.Foundation.Core\Digimezzo.Foundation.Core.csproj">
+      <Project>{f376ccca-325f-4533-934d-a9c4a7cfc69b}</Project>
+      <Name>Digimezzo.Foundation.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

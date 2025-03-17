@@ -40,14 +40,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Digimezzo.Foundation.Core">
-      <HintPath>..\Dopamine\Libraries\Digimezzo.Foundation.Core.dll</HintPath>
-    </Reference>
     <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Prism, Version=7.0.0.396, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.7.0.0.396\lib\net45\Prism.dll</HintPath>
@@ -145,6 +142,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Digimezzo.Foundation.Core\Digimezzo.Foundation.Core.csproj">
+      <Project>{f376ccca-325f-4533-934d-a9c4a7cfc69b}</Project>
+      <Name>Digimezzo.Foundation.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dopamine.Core\Dopamine.Core.csproj">
       <Project>{7faac843-6aa9-4b5b-8678-937137a61e47}</Project>
       <Name>Dopamine.Core</Name>

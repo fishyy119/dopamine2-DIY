@@ -48,8 +48,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Digimezzo.Foundation.Core">
-      <HintPath>..\Dopamine\Libraries\Digimezzo.Foundation.Core.dll</HintPath>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.3\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
     <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
@@ -67,8 +67,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="mscorlib" />
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=4.0.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.4.1.0\lib\net462\nunit.framework.dll</HintPath>
@@ -112,6 +112,10 @@
     <Compile Include="TrackPathGeneratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Digimezzo.Foundation.Core\Digimezzo.Foundation.Core.csproj">
+      <Project>{f376ccca-325f-4533-934d-a9c4a7cfc69b}</Project>
+      <Name>Digimezzo.Foundation.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dopamine.Core\Dopamine.Core.csproj">
       <Project>{7FAAC843-6AA9-4B5B-8678-937137A61E47}</Project>
       <Name>Dopamine.Core</Name>
