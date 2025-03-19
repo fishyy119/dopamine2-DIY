@@ -51,8 +51,9 @@
         <File>Newtonsoft.Json.dll</File>
         <File>NVorbis.dll</File>
         <File>DiscordRPC.dll</File>
+        <File>ColorHelper.dll</File>
+        <File>Colourful.dll</File>
       </Files>
     </Portable>
   </Packaging>
 </Packager>
-

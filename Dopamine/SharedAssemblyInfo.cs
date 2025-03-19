@@ -6,6 +6,6 @@
 // Revision: 4000 = Release
 [assembly: AssemblyCompany("Digimezzo")]
 [assembly: AssemblyCopyright("Copyright Digimezzo © 2014 - 2024")]
-[assembly: AssemblyVersion("2.0.10.5001")]
-[assembly: AssemblyFileVersion("2.0.10.5001")]
-[assembly: AssemblyInformationalVersion("2.0.10+koifish.1")]
+[assembly: AssemblyVersion("2.0.10.5002")]
+[assembly: AssemblyFileVersion("2.0.10.5002")]
+[assembly: AssemblyInformationalVersion("2.0.10+koifish.2")]

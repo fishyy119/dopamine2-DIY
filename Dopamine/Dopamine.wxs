@@ -205,6 +205,8 @@
             <File Source="WPFFolderBrowser.dll" />
             <File Source="DryIoc.dll" />
             <File Source="Newtonsoft.Json.dll" />
+            <File Source="ColorHelper.dll" />
+            <File Source="Colourful.dll" />
             <!-- Registry -->
             <RegistryKey Root="HKCR" Key="Directory\Shell\PlayWithDopamine">
               <RegistryValue Type="string" Value="Play with Dopamine"/>
