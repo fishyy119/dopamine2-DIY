@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ColorHelper, Version=1.8.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ColorHelper.1.8.1\lib\netstandard2.0\ColorHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Colourful, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Colourful.3.2.0\lib\net45\Colourful.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -96,7 +102,9 @@
     <Compile Include="Win32\WS.cs" />
     <Compile Include="Win32\WSEX.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Packaging\PackagerConfiguration.xml" />
     <Content Include="Settings\BaseSettings.xml" />
