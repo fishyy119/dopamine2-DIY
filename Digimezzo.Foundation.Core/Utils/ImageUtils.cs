@@ -1,14 +1,12 @@
-﻿using ColorHelper;
-using Colourful;
-using Digimezzo.Foundation.Core.Helpers;
+﻿using Digimezzo.Foundation.Core.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using ColorM = System.Windows.Media.Color;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using ColorConverter = ColorHelper.ColorConverter;
 
 namespace Digimezzo.Foundation.Core.Utils
 {
@@ -375,12 +373,12 @@ namespace Digimezzo.Foundation.Core.Utils
         /// </summary>
         /// <param name="pixels">一系列颜色的列表</param>
         /// <returns>色彩平均值</returns>
-        private static LabColor ComputeMeanColor(List<LabColor> pixels)
+        private static LABColor ComputeMeanColor(List<LABColor> pixels)
         {
             double meanL = pixels.Average(p => p.L);
-            double meanA = pixels.Average(p => p.a);
-            double meanB = pixels.Average(p => p.b);
-            return new LabColor(meanL, meanA, meanB);
+            double meanA = pixels.Average(p => p.A);
+            double meanB = pixels.Average(p => p.B);
+            return new LABColor(meanL, meanA, meanB);
         }
 
         /// <summary>
@@ -403,11 +401,11 @@ namespace Digimezzo.Foundation.Core.Utils
         /// </summary>
         /// <param name="pixels">一系列点的列表</param>
         /// <returns>加权后方差</returns>
-        private static double ComputeWeightedVariance(List<LabColor> pixels)
+        private static double ComputeWeightedVariance(List<LABColor> pixels)
         {
             double varL = ComputeVariance(pixels.Select(p => p.L));
-            double varA = ComputeVariance(pixels.Select(p => p.a));
-            double varB = ComputeVariance(pixels.Select(p => p.b));
+            double varA = ComputeVariance(pixels.Select(p => p.A));
+            double varB = ComputeVariance(pixels.Select(p => p.B));
             return (varL / 10.0 + varA + varB) / 2.9; // 加权计算
         }
 
@@ -417,31 +415,31 @@ namespace Digimezzo.Foundation.Core.Utils
         /// <param name="pixels">点的列表</param>
         /// <param name="depth">递归深度</param>
         /// <returns > 列表，每一项分别记录平均色彩与加权方差 </returns>
-        public static List<Tuple<LabColor, double>> SplitColors(List<LabColor> pixels, int depth = 0)
+        public static List<Tuple<LABColor, double>> SplitColors(List<LABColor> pixels, int depth = 0)
         {
             int numColors = 7;
             if (pixels.Count == 0)
-                return new List<Tuple<LabColor, double>>();
+                return new List<Tuple<LABColor, double>>();
 
             if (depth >= Math.Log(numColors, 2))
             {
                 var meanColor = ComputeMeanColor(pixels);
                 double variance = ComputeWeightedVariance(pixels);
-                return new List<Tuple<LabColor, double>> { Tuple.Create(meanColor, variance) };
+                return new List<Tuple<LABColor, double>> { Tuple.Create(meanColor, variance) };
             }
 
             // 计算每个通道的方差
             double varL = ComputeVariance(pixels.Select(p => p.L)) / 10.0;
-            double varA = ComputeVariance(pixels.Select(p => p.a));
-            double varB = ComputeVariance(pixels.Select(p => p.b));
+            double varA = ComputeVariance(pixels.Select(p => p.A));
+            double varB = ComputeVariance(pixels.Select(p => p.B));
 
             // 计算最大方差的通道
             int maxVarIndex = (varL > varA && varL > varB) ? 0 : (varA > varB ? 1 : 2);
 
             // 按该通道的中位数切分
             pixels.Sort((p1, p2) => maxVarIndex == 0 ? p1.L.CompareTo(p2.L) :
-                                     maxVarIndex == 1 ? p1.a.CompareTo(p2.a) :
-                                                        p1.b.CompareTo(p2.b));
+                                     maxVarIndex == 1 ? p1.A.CompareTo(p2.A) :
+                                                        p1.B.CompareTo(p2.B));
 
             int medianIndex = pixels.Count / 2;
             return SplitColors(pixels.GetRange(0, medianIndex), depth + 1)
@@ -450,31 +448,14 @@ namespace Digimezzo.Foundation.Core.Utils
         }
 
         /// <summary>
-        /// 对Colourful转换的一个封装，有Lab转换为Rgb
-        /// </summary>
-        /// <param name="color">LAB颜色</param>
-        /// <param name="labToRgb">Colourful的转换器</param>
-        /// <returns>元组，分别为RGB值</returns>
-        private static Tuple<byte, byte, byte> ConvertLabToRgb(LabColor color, IColorConverter<LabColor, RGBColor> labToRgb)
-        {
-            var result_rgb = labToRgb.Convert(color);
-            byte r, g, b;
-            result_rgb.ToRGB8Bit(out r, out g, out b);
-            return Tuple.Create(r, g, b);
-        }
-
-        /// <summary>
         /// Gets the dominant color in a System.Drawing.Bitmap
         /// </summary>
         /// <param name="bitmap">The Byte array containing the image data</param>
         /// <returns>The dominant System.Windows.Media.Color</returns>
-        private static System.Windows.Media.Color GetDominantColor(Bitmap bitmap)
+        private static ColorM GetDominantColor(Bitmap bitmap)
         {
-            var rgbToLab = new ConverterBuilder().FromRGB(RGBWorkingSpaces.sRGB).ToLab(Illuminants.D50).Build();
-            var labToRgb = new ConverterBuilder().FromLab(Illuminants.D50).ToRGB(RGBWorkingSpaces.sRGB).Build();
-
-            var labColors = new List<LabColor>();
-            var rgbColors = new List<RGBColor>();
+            var labColors = new List<LABColor>();
+            var rgbColors = new List<ColorM>();
             var hslColors = new List<HSLColor>();
 
             // 控制计算规模，进行缩放
@@ -500,10 +481,9 @@ namespace Digimezzo.Foundation.Core.Utils
                 for (int x = 0; x < bitmap.Width; x++)
                 {
                     Color pixelColor = bitmap.GetPixel(x, y);
+                    rgbColors.Add(ColorM.FromRgb(pixelColor.R, pixelColor.G, pixelColor.B));
                     var hslColor = HSLColor.GetFromRgb(pixelColor.R, pixelColor.G, pixelColor.B);
                     hslColors.Add(hslColor);
-                    var rgbColor = new RGBColor(pixelColor.R / 255.0, pixelColor.G / 255.0, pixelColor.B / 255.0);
-                    rgbColors.Add(rgbColor);
                 }
             }
 
@@ -530,7 +510,7 @@ namespace Digimezzo.Foundation.Core.Utils
             {
                 for (int i = 0; i < validIndices.Count; i++)
                 {
-                    var labColor = rgbToLab.Convert(rgbColors[validIndices[i]]);
+                    var labColor = LABColor.GetFromRgb(rgbColors[validIndices[i]]);
                     labColors.Add(labColor);
                 }
 
@@ -540,22 +520,21 @@ namespace Digimezzo.Foundation.Core.Utils
                 // 筛选方差小于 `min(minVariance * 2, 50)` 的颜色
                 var closeColors = dominantLabColors
                     .Where(x => x.Item2 < Math.Min(minVariance * 2, 25))  // 这里的25与图像尺寸有关，这里是500x500下的经验值
-                    .Select(x => x.Item1)  // 只取 LabColor
+                    .Select(x => x.Item1)
                     .ToList();
 
-                var result_lab = new LabColor();
+                LABColor result_lab;
                 if (closeColors.Count > 1)
                 {
                     // 选择最鲜艳的颜色
-                    byte max_s = 0;
+                    int max_s = 0;
                     int max_i = 0;
                     for (int i = 0; i < closeColors.Count; i++)
                     {
-                        var rgb = ConvertLabToRgb(closeColors[i], labToRgb);
-                        HSV hsv = ColorConverter.RgbToHsv(new RGB(rgb.Item1, rgb.Item2, rgb.Item3));
-                        if (max_s <= hsv.S)
+                        HSVColor hsv = HSVColor.GetFromRgb(closeColors[i].ToRgb());
+                        if (max_s <= hsv.Saturation)
                         {
-                            max_s = hsv.S;
+                            max_s = hsv.Saturation;
                             max_i = i;
                         }
                     }
@@ -567,14 +546,22 @@ namespace Digimezzo.Foundation.Core.Utils
                     result_lab = dominantLabColors.First().Item1;
                 }
 
-                var result_rgb = ConvertLabToRgb(result_lab, labToRgb);
-                HSV result_hsv = ColorConverter.RgbToHsv(new RGB(result_rgb.Item1, result_rgb.Item2, result_rgb.Item3));
+                var result_rgb = result_lab.ToRgb();
+                var result_hsv = HSVColor.GetFromRgb(result_rgb);
                 // 限制S、V到80
-                result_hsv.S = Math.Min((byte)80, result_hsv.S);
-                result_hsv.V = Math.Min((byte)80, result_hsv.V);
-
-                var result_final = ColorConverter.HsvToRgb(result_hsv);
-                return System.Windows.Media.Color.FromRgb(result_final.R, result_final.G, result_final.B);
+                var S = result_hsv.Saturation;
+                var V = result_hsv.Value;
+                if (S >= 80 || V >= 80)
+                {
+                    result_hsv.Saturation = Math.Min(80, S);
+                    result_hsv.Value = Math.Min(80, V);
+                    return result_hsv.ToRgb();
+                }
+                else
+                {
+                    return result_rgb;
+                }
+                
             }
         }
 
