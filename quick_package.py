@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import List, TextIO
 
 
-target_revision: int = 2
+target_revision: int = 3
 ROOT_PATH: Path = Path(__file__).resolve().parent
 change_count: int = 0  # 一共有4个字符串需要修改，此变量用于校验
 
