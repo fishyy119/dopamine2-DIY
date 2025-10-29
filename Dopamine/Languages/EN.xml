@@ -95,6 +95,7 @@
   <Text Key="Follow_Song">Follow song</Text>
   <Text Key="Default">Default</Text>
   <Text Key="View_In_Explorer">View in Windows Explorer</Text>
+  <Text Key="Open_With_M3U_Manager">Open with M3U Manager</Text>
   <Text Key="Jump_To_Playing_Song">Jump to the playing song</Text>
   <Text Key="Ctrl_E">Ctrl+E</Text>
   <Text Key="Ctrl_J">Ctrl+J</Text>

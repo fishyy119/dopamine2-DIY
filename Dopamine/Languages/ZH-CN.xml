@@ -95,6 +95,7 @@
   <Text Key="Follow_Song">跟随歌曲</Text>
   <Text Key="Default">默认</Text>
   <Text Key="View_In_Explorer">在 Windows 资源管理器中查看</Text>
+  <Text Key="Open_With_M3U_Manager">使用 M3U 管理器打开</Text>
   <Text Key="Jump_To_Playing_Song">跳转到正在播放的歌曲</Text>
   <Text Key="Ctrl_E">Ctrl+E</Text>
   <Text Key="Ctrl_J">Ctrl+J</Text>

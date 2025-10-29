@@ -18,6 +18,7 @@ namespace Dopamine.Views.FullPlayer.Collection
         private IPlaylistService playlistService;
 
         public DelegateCommand ViewPlaylistInExplorerCommand { get; set; }
+        public DelegateCommand OpenInM3UManagerCommand { get; set; }
 
         public CollectionPlaylists()
         {
@@ -29,6 +30,8 @@ namespace Dopamine.Views.FullPlayer.Collection
 
             // Commands
             this.ViewPlaylistInExplorerCommand = new DelegateCommand(() => this.ViewPlaylistInExplorer(this.ListBoxPlaylists));
+            this.OpenInM3UManagerCommand = new DelegateCommand(() => this.OpenInM3UManager(this.ListBoxPlaylists));
+
             this.ViewInExplorerCommand = new DelegateCommand(() => this.ViewInExplorer(this.ListBoxTracks));
             this.JumpToPlayingTrackCommand = new DelegateCommand(() => this.ScrollToPlayingTrackAsync(this.ListBoxTracks));
 
@@ -102,5 +105,42 @@ namespace Dopamine.Views.FullPlayer.Collection
                 LogClient.Error("Could not view playlist in Windows Explorer. Exception: {0}", ex.Message);
             }
         }
+
+        private void OpenInM3UManager(Object sender)
+        {
+            try
+            {
+                // 获取选中项
+                ListBox lb = (ListBox)sender;
+                if (lb.SelectedItem is PlaylistViewModel playlist)
+                {
+                    // 工具路径（相对路径）
+                    string exePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Tools", "M3U Manager.exe");
+
+                    // 参数：-d (目录) -s (选中的文件名)
+                    string directory = System.IO.Path.GetDirectoryName(playlist.Path) ?? "";
+                    string name = System.IO.Path.GetFileNameWithoutExtension(playlist.Path) ?? "";
+
+                    string arguments = $"-d \"{directory}\" -s \"{name}\"";
+
+                    // 启动进程
+                    var processStartInfo = new System.Diagnostics.ProcessStartInfo
+                    {
+                        FileName = exePath,
+                        Arguments = arguments,
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(exePath)
+                    };
+
+                    System.Diagnostics.Process.Start(processStartInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogClient.Error("Could not open playlist in M3U Manager. Exception: {0}", ex.Message);
+            }
+        }
+
     }
 }
