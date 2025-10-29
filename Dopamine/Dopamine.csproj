@@ -589,6 +589,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="App.config" />
     <None Include="app.manifest" />
     <Content Include="BaseSettings.xml">
@@ -654,6 +655,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Settings.XamlStyler" />
     <Resource Include="Resources\Fonts\segmdl2.ttf" />
     <Resource Include="Resources\Fonts\Monoglyceride.ttf" />
     <Resource Include="Resources\Fonts\MaterialIcons-Regular.ttf" />
