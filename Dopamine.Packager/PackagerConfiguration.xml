@@ -52,6 +52,9 @@
         <File>NVorbis.dll</File>
         <File>DiscordRPC.dll</File>
         <File>Colourful.dll</File>
+		<File>MyNihongo.KanaConverter.dll</File>
+		<File>MyNihongo.KanaDetector.dll</File> 
+	    <File>ToolGood.Words.FirstPinyin.dll</File> 
       </Files>
     </Portable>
   </Packaging>

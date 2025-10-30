@@ -4,6 +4,9 @@ using Dopamine.Core.Extensions;
 using System;
 using System.Globalization;
 using System.Text;
+using ToolGood.Words.FirstPinyin;
+using MyNihongo.KanaConverter;
+using MyNihongo.KanaDetector;
 
 namespace Dopamine.Core.Utils
 {
@@ -113,13 +116,13 @@ namespace Dopamine.Core.Utils
         {
             if (string.IsNullOrEmpty(originalString)) return string.Empty;
 
-            string returnString = originalString.ToLower().Trim();
+            string trimmed = originalString.ToLower().Trim();
 
             if (removePrefix)
             {
                 try
                 {
-                    returnString = returnString.TrimStart("the ").Trim();
+                    trimmed = trimmed.TrimStart("the ").Trim();
                 }
                 catch (Exception)
                 {
@@ -127,7 +130,29 @@ namespace Dopamine.Core.Utils
                 }
             }
 
-            return returnString;
+            // 初始化返回字符串为小写
+            string returnString = trimmed.ToLower();
+
+            if (returnString.Length == 0)
+                return returnString;
+
+            string firstElement = new StringInfo(originalString).SubstringByTextElements(0, 1);
+            string prefix = string.Empty;
+
+            // 判断是否为汉字
+            if (WordsHelper.IsAllChinese(firstElement))
+            {
+                prefix = WordsHelper.GetFirstPinyin(firstElement).ToLower();
+            }
+            // 判断是否为日语假名（平假名/片假名）
+            else if (firstElement.IsKana())
+            {
+                string romaji = firstElement.ToRomaji();
+                prefix = !string.IsNullOrEmpty(romaji) ? romaji.Substring(0, 1).ToLower() : firstElement.ToLower();
+            }
+
+            return prefix + returnString;
+
         }
 
         public static string TrimValue(string value)
