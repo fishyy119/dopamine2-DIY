@@ -18,6 +18,7 @@
         <Directory>x86</Directory>
         <Directory>FFmpeg\bin\windows\x64</Directory>
         <Directory>FFmpeg\bin\windows\x86</Directory>
+		<Directory>Tools</Directory>
       </Directories>
       <Files>
         <File>Dopamine.exe</File>
@@ -54,8 +55,9 @@
         <File>Colourful.dll</File>
 		<File>MyNihongo.KanaConverter.dll</File>
 		<File>MyNihongo.KanaDetector.dll</File> 
-	    <File>ToolGood.Words.FirstPinyin.dll</File> 
-      </Files>
+	    <File>ToolGood.Words.FirstPinyin.dll</File>
+		<File>Microsoft.Extensions.ObjectPool.dll</File>
+	  </Files>
     </Portable>
   </Packaging>
 </Packager>

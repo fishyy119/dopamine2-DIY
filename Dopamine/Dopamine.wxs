@@ -169,6 +169,12 @@
 							<File Source="Equalizer\Techno.deq" />
 						</Component>
 					</Directory>
+					<!-- Tools -->
+					<Directory Id="TOOLSFOLDER" Name="Tools">
+						<Component Id="TOOLSCMP" DiskId="1" Guid="1669DE37-9DCD-43E4-86FB-556F592BD1DA">
+							<File Source="Tools/M3U Manager.exe" />
+						</Component>
+					</Directory>
 					<!-- Application -->
 					<Component Id="MAINCMP" DiskId="1" Guid="9B925874-C592-453A-BCA8-4CF8D8E60511">
 						<!-- Files -->
@@ -209,6 +215,7 @@
 						<File Source="MyNihongo.KanaConverter.dll" />
 						<File Source="MyNihongo.KanaDetector.dll" />
 						<File Source="ToolGood.Words.FirstPinyin.dll" />
+						<File Source="Microsoft.Extensions.ObjectPool.dll" />
 
 						<!-- Registry -->
 						<RegistryKey Root="HKCR" Key="Directory\Shell\PlayWithDopamine">
@@ -290,6 +297,7 @@
 			<ComponentRef Id="ICONSCMP" />
 			<ComponentRef Id="LANGUAGESCMP" />
 			<ComponentRef Id="EQUALIZERCMP" />
+			<ComponentRef Id="TOOLSCMP" />
 			<ComponentRef Id="MAINCMP" />
 			<ComponentRef Id="X64CMP" />
 			<ComponentRef Id="X86CMP" />
