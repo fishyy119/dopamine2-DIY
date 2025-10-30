@@ -4,8 +4,7 @@ import subprocess
 from pathlib import Path
 from typing import List, TextIO
 
-
-target_revision: int = 3
+target_revision: int = 4
 ROOT_PATH: Path = Path(__file__).resolve().parent
 change_count: int = 0  # 一共有4个字符串需要修改，此变量用于校验
 
@@ -18,9 +17,11 @@ file_infoXAML: Path = ROOT_PATH / "Dopamine/Views/FullPlayer/Information/Informa
 bin_packager: Path = ROOT_PATH / "Dopamine.Packager/bin/Release"
 bin_main: Path = ROOT_PATH / "Dopamine/bin/Release"
 folder_output: Path = Path("C:/Temp/Dopamine")
+
 # 可执行文件路径
 packager_exe: Path = bin_main / "Dopamine.Packager.exe"
-MSBuild_exe: Path = Path("D:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe")
+# MSBuild_exe: Path = Path("D:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe")
+MSBuild_exe: Path = Path("C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe")
 
 
 def change_version(file_path: Path, new_revision: int) -> int:
@@ -59,6 +60,29 @@ def change_version(file_path: Path, new_revision: int) -> int:
     return change_count
 
 
+def build_m3u_manager():
+    """调用 M3U Manager 的 build.py 脚本"""
+    file_buildlog = ROOT_PATH / "m3u_build_output.log"
+    m3u_build_script = ROOT_PATH / "M3U_Manager/build.py"
+    if not m3u_build_script.exists():
+        styled_print(f"Can't find {m3u_build_script}", styles=[Style.RED])
+        exit(5)
+
+    print("Running M3U Manager build script ... ", end="", flush=True)
+    try:
+        with open(file_buildlog, "w") as log:
+            subprocess.run(
+                ["python", str(m3u_build_script)],
+                check=True,
+                stdout=log,
+                stderr=subprocess.STDOUT,
+            )
+        styled_print("OK", styles=[Style.GREEN])
+    except subprocess.CalledProcessError as e:
+        styled_print(f"\nFailed running M3U build: {e}", styles=[Style.RED])
+        exit(5)
+
+
 def compile_project() -> None:
     """调用 MSBuild 进行编译"""
     file_buildlog = ROOT_PATH / "build_output.log"
@@ -77,11 +101,21 @@ def compile_project() -> None:
         exit(2)
 
 
-def copy_files() -> None:
+def copy_files(src: Path, dst: Path) -> None:
     """将 folder1 中的文件复制到 folder2"""
     try:
         print("Copying ... ", end="", flush=True)
-        shutil.copytree(bin_packager, bin_main, dirs_exist_ok=True)
+        if src.is_dir():
+            shutil.copytree(src, dst, dirs_exist_ok=True)
+
+        elif src.is_file():
+            dst_parent = dst.parent
+            dst_parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+        else:
+            styled_print(f"\nSource {src} does not exist.", styles=[Style.RED])
+            exit(3)
+
         styled_print("OK", styles=[Style.GREEN])
     except Exception as e:
         styled_print(f"\nFailed: {e}", styles=[Style.RED])
@@ -145,6 +179,10 @@ def styled_print(
 
 
 if __name__ == "__main__":
+    # 构建 M3U Manager
+    build_m3u_manager()
+    copy_files(ROOT_PATH / "M3U Manager.exe", ROOT_PATH / "Dopamine/Tools/M3U Manager.exe")
+
     # 修改文件中的版本号
     change_count: int = 0
     change_count += change_version(file_assembly, target_revision)
@@ -157,6 +195,6 @@ if __name__ == "__main__":
     compile_project()
 
     # 将packager的编译结果复制到main下运行，并且对结果重命名
-    copy_files()
-    run_packager()
+    copy_files(bin_packager, bin_main)
+    run_packager()  # *需要安装Wix Toolset v314
     rename_files()
