@@ -20,7 +20,7 @@
                 <TextBlock Text="{DynamicResource Language_Version}" Foreground="{DynamicResource Brush_PrimaryText}"/>
                 <TextBlock Text=":" Margin="0,0,5,0" Foreground="{DynamicResource Brush_PrimaryText}"/>
                 <!--<TextBlock Text="{Binding Package.FormattedVersionNoBuildWithLabel}" Margin="0,0,5,0" FontWeight="Bold" Foreground="{DynamicResource Brush_PrimaryText}"/>-->
-                <TextBlock Text="2.0.10+koifish.4" Margin="0,0,5,0" FontWeight="Bold" Foreground="{DynamicResource Brush_PrimaryText}"/>
+                <TextBlock Text="2.0.10+koifish.5" Margin="0,0,5,0" FontWeight="Bold" Foreground="{DynamicResource Brush_PrimaryText}"/>
             </StackPanel>
             <TextBlock Text="{Binding Copyright}" Margin="0,5,0,0" Foreground="{DynamicResource Brush_PrimaryText}"/>
             <TextBlock Text="Modified by fishyy119" Margin="0,5,0,0" Foreground="{DynamicResource Brush_PrimaryText}"/>
