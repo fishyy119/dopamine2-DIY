@@ -10,14 +10,13 @@ Dopamine is an audio player which tries to make organizing and listening to musi
 
 More information and downloads are available at [http://www.digimezzo.com](https://digimezzo.github.io/site/).
 
-This software uses code of <a href=http://ffmpeg.org>FFmpeg</a> licensed under the <a href=http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>LGPLv2.1</a> and its source can be downloaded <a href=https://github.com/FFmpeg/FFmpeg>here</a>.
+This software uses code of <a href=<http://ffmpeg.org>FFmpeg></a> licensed under the <a href=<http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html>LGPLv2.1></a> and its source can be downloaded <a href=<https://github.com/FFmpeg/FFmpeg>here></a>.
 
 [![Release](https://img.shields.io/github/release/digimezzo/Dopamine-windows.svg?style=flat-square)](https://github.com/digimezzo/Dopamine-windows/releases/latest)
 [![Issues](https://img.shields.io/github/issues/digimezzo/Dopamine-windows.svg?style=flat-square)](https://github.com/digimezzo/Dopamine-windows/issues)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MQALEWTEZ7HX8)
 
 <a href='https://ko-fi.com/S6S11K63U' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi1.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-
 
 ![Dopaminescreenshot](Dopamine.screenshot.png)
 
@@ -40,3 +39,28 @@ The most up to date translation files can be found in this repository, <a href="
 For existing translation files, please edit them directly on GitHub and send me a pull request. <a href="https://help.github.com/articles/editing-files-in-another-user-s-repository/">Editing files in another user's repository</a> explains how to do this.
 
 For new translation files (which are not yet in the repository), please add them via pull request. If you don't know how to add them, send me an e-mail to inform me which language you'd like me to add. I'll add the language file to the repository, so you can edit it directly on GitHub following the above procedure.
+
+## Packaging Remark
+
+The `quick_package.py` script can automatically package Dopamine by performing the following steps:
+
+1. **Build the custom toolset `M3U Manager.exe` and copy it to `Dopamine/Tools`.**
+
+   * This tool is written in Python and compiled into a standalone executable using **Nuitka**.
+   * The build process is handled by the script `M3U_manager/build.py`.
+
+2. **Update hardcoded version information in Dopamine.**
+
+   * **Four** string values are modified to reflect the new version.
+
+3. **Compile the project using MSBuild.**
+
+   * The script contains a hardcoded MSBuild path, which may need to be adjusted manually.
+   * The compilation produces the main application as well as the packaging helper `Packager.exe`.
+
+4. **Package the project using `Dopamine.Packager.exe`.**
+
+   * **WiX Toolset v3.14** must be installed to support packaging.
+   * During packaging, a new terminal window will appear, requiring manual interaction.
+
+5. **Rename the packaged output** so that the filename reflects the custom version number.
