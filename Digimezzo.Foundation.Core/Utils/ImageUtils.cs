@@ -240,8 +240,14 @@ namespace Digimezzo.Foundation.Core.Utils
 
                 if (width > 0 && height > 0)
                 {
-                    bi.DecodePixelWidth = width;
-                    bi.DecodePixelHeight = height;
+                    if (width > height)
+                    {
+                        bi.DecodePixelWidth = width;
+                    }
+                    else
+                    {
+                        bi.DecodePixelHeight = height;
+                    }
                 }
 
                 bi.CacheOption = BitmapCacheOption.OnLoad;
