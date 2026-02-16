@@ -2,7 +2,7 @@
 -------------------------------------
 
 - [Fixed] Use uniform scaling for album cover rather than fill
-- [Changed] Bump m3u_namager to 0.1.3
+- [Changed] Bump M3U Manager to 0.1.3
 
 2025-10-30: Dopamine 2.0.10+koifish.4
 -------------------------------------
