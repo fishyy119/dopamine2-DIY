@@ -99,10 +99,14 @@
                             </StackPanel>
                         </ToolTip>
                     </StackPanel.ToolTip>
-                    <TextBlock Foreground="{DynamicResource Brush_PrimaryText}"
+                    <TextBlock Cursor="Hand"
+                               Foreground="{DynamicResource Brush_PrimaryText}"
+                               MouseLeftButtonUp="CopyAlbumTitleToClipboard"
                                Text="{Binding AlbumViewModel.AlbumTitle}"
                                TextTrimming="CharacterEllipsis" />
-                    <TextBlock Foreground="{DynamicResource Brush_SecondaryText}"
+                    <TextBlock Cursor="Hand"
+                               Foreground="{DynamicResource Brush_SecondaryText}"
+                               MouseLeftButtonUp="CopyAlbumArtistToClipboard"
                                Text="{Binding AlbumViewModel.AlbumArtist}"
                                TextTrimming="CharacterEllipsis" />
                 </StackPanel>
