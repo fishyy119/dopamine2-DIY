@@ -113,50 +113,65 @@
                 <RowDefinition Height="52" />
             </Grid.RowDefinitions>
             <!--  Title  -->
-            <Label Grid.Row="0"
+            <Label Name="TitleLabel"
+                   Grid.Row="0"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Title}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="0"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
                               ShowAccent="{Binding Title.IsValueChanged}"
                               Text="{Binding Title.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Artists  -->
-            <Label Grid.Row="2"
+            <Label Name="ArtistsLabel"
+                   Grid.Row="2"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Artists}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="2"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
                               ShowAccent="{Binding Artists.IsValueChanged}"
                               Text="{Binding Artists.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Album  -->
-            <Label Grid.Row="4"
+            <Label Name="AlbumLabel"
+                   Grid.Row="4"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Album}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="4"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
                               ShowAccent="{Binding Album.IsValueChanged}"
                               Text="{Binding Album.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Album artists  -->
-            <Label Grid.Row="6"
+            <Label Name="AlbumArtistsLabel"
+                   Grid.Row="6"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Album_Artists}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="6"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
                               ShowAccent="{Binding AlbumArtists.IsValueChanged}"
                               Text="{Binding AlbumArtists.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Year  -->
-            <Label Grid.Row="8"
+            <Label Name="YearLabel"
+                   Grid.Row="8"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Year}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="8"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
@@ -166,10 +181,13 @@
                               ShowIcon="{Binding Year.IsNumeric, Converter={StaticResource InvertingBooleanConverter}}"
                               Text="{Binding Year.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Genres  -->
-            <Label Grid.Row="10"
+            <Label Name="GenresLabel"
+                   Grid.Row="10"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Genres}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <!--<pc:SelectionChangedComboBox Grid.Row="10" Grid.Column="2" Style="{StaticResource MetroComboBox}" ItemsSource="{Binding AllGenres}" SelectedItem="{Binding Genre}" SelectionChangedForeground="{DynamicResource Brush_Accent}"/>-->
             <pc:AccentTextBox Grid.Row="10"
                               Grid.Column="2"
@@ -177,10 +195,13 @@
                               ShowAccent="{Binding Genres.IsValueChanged}"
                               Text="{Binding Genres.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Track number  -->
-            <Label Grid.Row="12"
+            <Label Name="TrackNumberLabel"
+                   Grid.Row="12"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Track_Number}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="12"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
@@ -190,10 +211,13 @@
                               ShowIcon="{Binding TrackNumber.IsNumeric, Converter={StaticResource InvertingBooleanConverter}}"
                               Text="{Binding TrackNumber.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Track count  -->
-            <Label Grid.Row="14"
+            <Label Name="TrackCountLabel"
+                   Grid.Row="14"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Track_Count}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="14"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
@@ -203,10 +227,13 @@
                               ShowIcon="{Binding TrackCount.IsNumeric, Converter={StaticResource InvertingBooleanConverter}}"
                               Text="{Binding TrackCount.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Disc number  -->
-            <Label Grid.Row="16"
+            <Label Name="DiscNumberLabel"
+                   Grid.Row="16"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Disc_Number}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="16"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
@@ -216,10 +243,13 @@
                               ShowIcon="{Binding DiscNumber.IsNumeric, Converter={StaticResource InvertingBooleanConverter}}"
                               Text="{Binding DiscNumber.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Disc count  -->
-            <Label Grid.Row="18"
+            <Label Name="DiscCountLabel"
+                   Grid.Row="18"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Disc_Count}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="18"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
@@ -229,20 +259,26 @@
                               ShowIcon="{Binding DiscCount.IsNumeric, Converter={StaticResource InvertingBooleanConverter}}"
                               Text="{Binding DiscCount.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Grouping  -->
-            <Label Grid.Row="20"
+            <Label Name="GroupingLabel"
+                   Grid.Row="20"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Grouping}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="20"
                               Grid.Column="2"
                               VerticalContentAlignment="Center"
                               ShowAccent="{Binding Grouping.IsValueChanged}"
                               Text="{Binding Grouping.Value, UpdateSourceTrigger=PropertyChanged}" />
             <!--  Comment  -->
-            <Label Grid.Row="22"
+            <Label Name="CommentLabel"
+                   Grid.Row="22"
                    Grid.Column="0"
                    Content="{DynamicResource Language_Comment}"
-                   Foreground="{DynamicResource Brush_PrimaryText}" />
+                   Cursor="Hand"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   MouseLeftButtonUp="CopyLabelContentToClipboard" />
             <pc:AccentTextBox Grid.Row="22"
                               Grid.Column="2"
                               VerticalContentAlignment="Top"
