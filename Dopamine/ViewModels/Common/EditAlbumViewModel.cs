@@ -44,6 +44,8 @@ namespace Dopamine.ViewModels.Common
 
         public DelegateCommand RemoveArtworkCommand { get; set; }
 
+        public DelegateCommand CopyArtworkCommand { get; set; }
+
         public EditAlbumViewModel(AlbumViewModel albumViewModel, IMetadataService metadataService,
             IDialogService dialogService, ICacheService cacheService, IInfoDownloadService infoDownloadService) : base(cacheService, infoDownloadService)
         {
@@ -66,6 +68,7 @@ namespace Dopamine.ViewModels.Common
 
             this.RemoveArtworkCommand = new DelegateCommand(() => this.UpdateArtwork(null));
             this.DownloadArtworkCommand = new DelegateCommand(async () => await this.DownloadArtworkAsync(), () => this.CanDownloadArtwork());
+            this.CopyArtworkCommand = new DelegateCommand(this.CopyArtworkToClipboard, this.CanCopyArtwork);
         }
 
         private async Task DownloadArtworkAsync()
@@ -88,6 +91,35 @@ namespace Dopamine.ViewModels.Common
             }
 
             return !string.IsNullOrEmpty(this.albumViewModel.AlbumArtist) && !string.IsNullOrEmpty(this.albumViewModel.AlbumTitle);
+        }
+
+        private bool CanCopyArtwork()
+        {
+            return !string.IsNullOrEmpty(this.albumViewModel?.ArtworkPath);
+        }
+
+        private void CopyArtworkToClipboard()
+        {
+            try
+            {
+                var artworkPath = this.albumViewModel.ArtworkPath;
+                if (string.IsNullOrEmpty(artworkPath))
+                {
+                    return;
+                }
+                var image = new System.Windows.Media.Imaging.BitmapImage();
+                image.BeginInit();
+                image.CacheOption = System.Windows.Media.Imaging.BitmapCacheOption.OnLoad;
+                image.UriSource = new Uri(artworkPath);
+                image.EndInit();
+                image.Freeze();
+
+                System.Windows.Clipboard.SetImage(image);
+            }
+            catch (Exception ex)
+            {
+                LogClient.Error("Could not copy artwork to clipboard. Exception: {0}", ex.Message);
+            }
         }
 
         protected override void UpdateArtwork(byte[] imageData)
