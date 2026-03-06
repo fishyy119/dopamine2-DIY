@@ -233,6 +233,8 @@
   <Text Key="Export_The_Image">Export the image</Text>
   <Text Key="Change">Change</Text>
   <Text Key="Change_The_Image">Change the image</Text>
+  <Text Key="Copy">Copy</Text>
+  <Text Key="Copy_The_Image">Copy the image to clipboard</Text>
   <Text Key="Remove">Remove</Text>
   <Text Key="Remove_The_Image">Remove the image</Text>
   <Text Key="Images">Images</Text>

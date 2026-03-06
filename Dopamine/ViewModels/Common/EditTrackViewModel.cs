@@ -13,9 +13,12 @@ using Dopamine.Views.Common;
 using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Dopamine.ViewModels.Common
 {
@@ -53,6 +56,7 @@ namespace Dopamine.ViewModels.Common
         public DelegateCommand LoadedCommand { get; set; }
         public DelegateCommand ChangeArtworkCommand { get; set; }
         public DelegateCommand RemoveArtworkCommand { get; set; }
+        public DelegateCommand CopyArtworkCommand { get; set; }
 
         public string DialogTitle
         {
@@ -99,6 +103,19 @@ namespace Dopamine.ViewModels.Common
         {
             get { return this.hasMultipleArtwork; }
             set { SetProperty<bool>(ref this.hasMultipleArtwork, value); }
+        }
+
+        private byte[] artworkData;
+
+        public byte[] ArtworkData
+        {
+            get => this.artworkData;
+            private set
+            {
+                this.artworkData = value;
+                this.RaisePropertyChanged();
+                this.CopyArtworkCommand.RaiseCanExecuteChanged();
+            }
         }
 
         public MetadataValue Artists
@@ -234,6 +251,7 @@ namespace Dopamine.ViewModels.Common
 
             this.RemoveArtworkCommand = new DelegateCommand(() => this.UpdateArtwork(null));
             this.DownloadArtworkCommand = new DelegateCommand(async () => await this.DownloadArtworkAsync(), () => this.CanDownloadArtwork());
+            this.CopyArtworkCommand = new DelegateCommand(this.CopyArtworkToClipboard, this.CanCopyArtwork);
         }
 
         private async Task DownloadArtworkAsync()
@@ -285,6 +303,50 @@ namespace Dopamine.ViewModels.Common
 
             return (!string.IsNullOrEmpty(this.albumArtists.Value) || !string.IsNullOrEmpty(this.Artists.Value) &&
                 !string.IsNullOrEmpty(this.Album.Value));
+        }
+
+        private bool CanCopyArtwork()
+        {
+            return this.ArtworkData != null && this.ArtworkData.Length > 0;
+        }
+
+        private void CopyArtworkToClipboard()
+        {
+            try
+            {
+                if (this.ArtworkData == null)
+                {
+                    return;
+                }
+
+                BitmapImage bitmap = ByteArrayToBitmap(this.ArtworkData);
+
+                if (bitmap != null)
+                {
+                    Clipboard.SetImage(bitmap);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogClient.Error("Could not copy artwork to clipboard. Exception: {0}", ex.Message);
+            }
+        }
+
+        private BitmapImage ByteArrayToBitmap(byte[] data)
+        {
+            if (data == null || data.Length == 0)
+                return null;
+
+            using (var ms = new MemoryStream(data))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = ms;
+                image.EndInit();
+                image.Freeze(); // 跨线程安全
+                return image;
+            }
         }
 
         private async Task GetFilesMetadataAsync()
@@ -403,6 +465,7 @@ namespace Dopamine.ViewModels.Common
                 this.HasMultipleArtwork = false;
             }
 
+            this.ArtworkData = foundArtwork;
             this.ShowArtwork(foundArtwork);
         }
 
@@ -438,6 +501,7 @@ namespace Dopamine.ViewModels.Common
         {
             base.UpdateArtwork(imageData);
 
+            this.ArtworkData = imageData;
             // Artwork is updated. Multiple artwork is now impossible.
             this.HasMultipleArtwork = false;
         }

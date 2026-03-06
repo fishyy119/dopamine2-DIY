@@ -233,6 +233,8 @@
   <Text Key="Export_The_Image">导出图片</Text>
   <Text Key="Change">更改</Text>
   <Text Key="Change_The_Image">更改图片</Text>
+  <Text Key="Copy">复制</Text>
+  <Text Key="Copy_The_Image">复制图片到剪贴板</Text>
   <Text Key="Remove">移除</Text>
   <Text Key="Remove_The_Image">移除图片</Text>
   <Text Key="Images">图片</Text>
