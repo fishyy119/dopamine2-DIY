@@ -1,3 +1,9 @@
+2026-03-29: Dopamine 2.0.10+koifish.7
+-------------------------------------
+
+- [Added] Repair invalid path in .m3u files (by M3U Manager)
+- [Changed] Bump M3U Manager to 0.2.0
+
 2026-03-06: Dopamine 2.0.10+koifish.6
 -------------------------------------
 
