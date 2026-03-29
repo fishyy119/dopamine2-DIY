@@ -3,10 +3,13 @@ using Digimezzo.Foundation.Core.IO;
 using Digimezzo.Foundation.Core.Logging;
 using Dopamine.Core.Prism;
 using Dopamine.Services.Entities;
+using Dopamine.Services.Folders;
 using Dopamine.Services.Playlist;
 using Dopamine.Views.Common.Base;
 using Prism.Commands;
 using System;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -16,6 +19,7 @@ namespace Dopamine.Views.FullPlayer.Collection
     public partial class CollectionPlaylists : TracksViewBase
     {
         private IPlaylistService playlistService;
+        private IFoldersService foldersService;
 
         public DelegateCommand ViewPlaylistInExplorerCommand { get; set; }
         public DelegateCommand OpenInM3UManagerCommand { get; set; }
@@ -27,10 +31,11 @@ namespace Dopamine.Views.FullPlayer.Collection
             // We need a parameterless constructor to be able to use this UserControl in other UserControls without dependency injection.
             // So for now there is no better solution than to find the EventAggregator by using the ServiceLocator.
             this.playlistService = ServiceLocator.Current.GetInstance<IPlaylistService>();
+            this.foldersService = ServiceLocator.Current.GetInstance<IFoldersService>();
 
             // Commands
             this.ViewPlaylistInExplorerCommand = new DelegateCommand(() => this.ViewPlaylistInExplorer(this.ListBoxPlaylists));
-            this.OpenInM3UManagerCommand = new DelegateCommand(() => this.OpenInM3UManager(this.ListBoxPlaylists));
+            this.OpenInM3UManagerCommand = new DelegateCommand(async () => await this.OpenInM3UManagerAsync(this.ListBoxPlaylists));
 
             this.ViewInExplorerCommand = new DelegateCommand(() => this.ViewInExplorer(this.ListBoxTracks));
             this.JumpToPlayingTrackCommand = new DelegateCommand(() => this.ScrollToPlayingTrackAsync(this.ListBoxTracks));
@@ -106,7 +111,7 @@ namespace Dopamine.Views.FullPlayer.Collection
             }
         }
 
-        private void OpenInM3UManager(Object sender)
+        private async System.Threading.Tasks.Task OpenInM3UManagerAsync(Object sender)
         {
             try
             {
@@ -117,11 +122,26 @@ namespace Dopamine.Views.FullPlayer.Collection
                     // 工具路径（相对路径）
                     string exePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Tools", "M3U Manager.exe");
 
-                    // 参数：-d (目录) -s (选中的文件名)
-                    string directory = System.IO.Path.GetDirectoryName(playlist.Path) ?? "";
-                    string name = System.IO.Path.GetFileNameWithoutExtension(playlist.Path) ?? "";
+                    // 参数：-d (目录) -s (选中的文件名) -l (库根目录列表)
+                    string directory = (System.IO.Path.GetDirectoryName(playlist.Path) ?? "").Trim().Replace('\\', '/');
+                    string name = (System.IO.Path.GetFileNameWithoutExtension(playlist.Path) ?? "").Trim();
 
-                    string arguments = $"-d \"{directory}\" -s \"{name}\"";
+                    var argumentBuilder = new StringBuilder($"-d \"{directory}\" -s \"{name}\"");
+
+                    var libraryRoots = (await this.foldersService.GetFoldersAsync())
+                        .Where((folder) => folder.ShowInCollection && !string.IsNullOrWhiteSpace(folder.Path))
+                        .Select((folder) => folder.Path.Trim().Replace('\\', '/'))
+                        .Where((path) => !string.IsNullOrWhiteSpace(path))
+                        .Distinct(StringComparer.OrdinalIgnoreCase)
+                        .ToList();
+
+                    if (libraryRoots.Count > 0)
+                    {
+                        argumentBuilder.Append(" -l ");
+                        argumentBuilder.Append(string.Join(" ", libraryRoots.Select((path) => $"\"{path}\"")));
+                    }
+
+                    string arguments = argumentBuilder.ToString();
 
                     // 启动进程
                     var processStartInfo = new System.Diagnostics.ProcessStartInfo
