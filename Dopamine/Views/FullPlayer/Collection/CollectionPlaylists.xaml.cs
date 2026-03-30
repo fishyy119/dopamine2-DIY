@@ -2,6 +2,7 @@
 using Digimezzo.Foundation.Core.IO;
 using Digimezzo.Foundation.Core.Logging;
 using Dopamine.Core.Prism;
+using Dopamine.Data.Repositories;
 using Dopamine.Services.Entities;
 using Dopamine.Services.Folders;
 using Dopamine.Services.Playlist;
@@ -19,7 +20,7 @@ namespace Dopamine.Views.FullPlayer.Collection
     public partial class CollectionPlaylists : TracksViewBase
     {
         private IPlaylistService playlistService;
-        private IFoldersService foldersService;
+        private IFolderRepository foldersService;
 
         public DelegateCommand ViewPlaylistInExplorerCommand { get; set; }
         public DelegateCommand OpenInM3UManagerCommand { get; set; }
@@ -31,7 +32,7 @@ namespace Dopamine.Views.FullPlayer.Collection
             // We need a parameterless constructor to be able to use this UserControl in other UserControls without dependency injection.
             // So for now there is no better solution than to find the EventAggregator by using the ServiceLocator.
             this.playlistService = ServiceLocator.Current.GetInstance<IPlaylistService>();
-            this.foldersService = ServiceLocator.Current.GetInstance<IFoldersService>();
+            this.foldersService = ServiceLocator.Current.GetInstance<IFolderRepository>();
 
             // Commands
             this.ViewPlaylistInExplorerCommand = new DelegateCommand(() => this.ViewPlaylistInExplorer(this.ListBoxPlaylists));
@@ -128,8 +129,8 @@ namespace Dopamine.Views.FullPlayer.Collection
 
                     var argumentBuilder = new StringBuilder($"-d \"{directory}\" -s \"{name}\"");
 
-                    var libraryRoots = (await this.foldersService.GetFoldersAsync())
-                        .Where((folder) => folder.ShowInCollection && !string.IsNullOrWhiteSpace(folder.Path))
+                    var folders = await this.foldersService.GetFoldersAsync();
+                    var libraryRoots = folders
                         .Select((folder) => folder.Path.Trim().Replace('\\', '/'))
                         .Where((path) => !string.IsNullOrWhiteSpace(path))
                         .Distinct(StringComparer.OrdinalIgnoreCase)
