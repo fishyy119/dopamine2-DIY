@@ -9,9 +9,6 @@ namespace Dopamine.Packager
     {
         static void Main(string[] args)
         {
-            Assembly asm = Assembly.GetEntryAssembly();
-            AssemblyName an = asm.GetName();
-
             bool proceed = true;
 
 #if DEBUG
@@ -33,7 +30,7 @@ namespace Dopamine.Packager
 
             if (proceed)
             {
-                var worker = new PackageCreator(ProductInformation.ApplicationName, an.Version);
+                var worker = new PackageCreator(Package.FromAssembly(Assembly.GetEntryAssembly(), ProductInformation.ApplicationName));
                 worker.ExecuteAsync().Wait();
             }
         }
