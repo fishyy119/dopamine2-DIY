@@ -662,7 +662,8 @@
     <Resource Include="Resources\Fonts\fontawesome-webfont.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Changelog.txt">
+    <Content Include="..\CHANGELOG.md">
+      <Link>CHANGELOG.md</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dopamine.BannerBmp.bmp">
