@@ -7,6 +7,7 @@ using Digimezzo.Foundation.WPF.Controls;
 using Dopamine.Core.Base;
 using Dopamine.Core.Helpers;
 using Dopamine.Core.IO;
+using Dopamine.Core.Search;
 using Dopamine.Data;
 using Dopamine.Data.Repositories;
 using Dopamine.Services.Appearance;
@@ -52,6 +53,7 @@ using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Regions;
 using System;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Threading;
@@ -63,6 +65,14 @@ namespace Dopamine
 {
     public partial class App : PrismApplication
     {
+        private ISearchService readingSearchService;
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            this.readingSearchService?.Dispose();
+            base.OnExit(e);
+        }
+
         private Mutex instanceMutex = null;
         private DateTime lastUnhandledExceptionLoggedTime = DateTime.MinValue;
 
@@ -238,6 +248,8 @@ namespace Dopamine
                 containerRegistry.RegisterSingleton<IPlaybackService, PlaybackService>();
                 containerRegistry.RegisterSingleton<IWin32InputService, Win32InputService>();
                 containerRegistry.RegisterSingleton<ISearchService, SearchService>();
+                containerRegistry.RegisterInstance<IReadingConverter>(
+                    new ReadingConverter(Path.Combine(AppContext.BaseDirectory, "IpaDic")));
                 containerRegistry.RegisterSingleton<ITaskbarService, TaskbarService>();
                 containerRegistry.RegisterSingleton<ICollectionService, CollectionService>();
                 containerRegistry.RegisterSingleton<IFoldersService, FoldersService>();
@@ -305,6 +317,7 @@ namespace Dopamine
                 );
                 Container.Resolve<IExternalControlService>();
                 Container.Resolve<IRichPresenceService>();
+                this.readingSearchService = Container.Resolve<ISearchService>();
             }
 
             void RegisterViews()

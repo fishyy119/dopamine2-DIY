@@ -236,6 +236,7 @@ namespace Dopamine.ViewModels.FullPlayer.Collection
             {
                 // Get the genres
                 var genreViewModels = new ObservableCollection<GenreViewModel>(await this.collectionService.GetAllGenresAsync());
+                _ = this.searchService.PrepareAsync(genreViewModels.Select(genre => genre.GenreName));
 
                 // Unbind to improve UI performance
                 this.ClearGenres();
@@ -364,7 +365,7 @@ namespace Dopamine.ViewModels.FullPlayer.Collection
         {
             GenreViewModel gvm = e.Item as GenreViewModel;
 
-            e.Accepted = Services.Utils.EntityUtils.FilterGenres(gvm, this.searchService.SearchText);
+            e.Accepted = Services.Utils.EntityUtils.FilterGenres(gvm, this.searchService);
         }
 
         private async Task ToggleTrackOrderAsync()

@@ -250,7 +250,7 @@ namespace Dopamine.ViewModels.Common.Base
         private void AlbumsCvs_Filter(object sender, FilterEventArgs e)
         {
             AlbumViewModel avm = e.Item as AlbumViewModel;
-            e.Accepted = Services.Utils.EntityUtils.FilterAlbums(avm, this.searchService.SearchText);
+            e.Accepted = Services.Utils.EntityUtils.FilterAlbums(avm, this.searchService);
         }
 
         protected void UpdateAlbumOrderText(AlbumOrder albumOrder)
@@ -334,6 +334,7 @@ namespace Dopamine.ViewModels.Common.Base
             {
                 // Order the incoming Albums
                 IList<AlbumViewModel> orderedAlbums = await this.collectionService.OrderAlbumsAsync(albums, albumOrder);
+                _ = this.searchService.PrepareAsync(orderedAlbums.SelectMany(Services.Utils.EntityUtils.GetSearchFields));
 
                 // Create new ObservableCollection
                 var albumViewModels = new ObservableCollection<AlbumViewModel>(orderedAlbums);

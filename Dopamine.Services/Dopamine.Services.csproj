@@ -229,6 +229,7 @@
     <Compile Include="Scrobbling\ScrobblingService.cs" />
     <Compile Include="Search\ISearchService.cs" />
     <Compile Include="Search\SearchService.cs" />
+    <Compile Include="Search\SearchProjectionService.cs" />
     <Compile Include="Shell\EventArgs.cs" />
     <Compile Include="Shell\IShellService.cs" />
     <Compile Include="Statistics\IStatisticsService.cs" />

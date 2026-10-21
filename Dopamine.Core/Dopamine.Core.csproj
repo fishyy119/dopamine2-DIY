@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.props" Condition="Exists('..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,17 +54,23 @@
     <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
     </Reference>
+    <Reference Include="EzPinyin, Version=1.1.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EzPinyin.1.1.2\lib\net20\EzPinyin.dll</HintPath>
+    </Reference>
     <Reference Include="GongSolutions.WPF.DragDrop">
       <HintPath>..\Dopamine\Libraries\GongSolutions.WPF.DragDrop.dll</HintPath>
+    </Reference>
+    <Reference Include="LibNMeCab, Version=0.10.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibNMeCab.0.10.2\lib\netstandard2.0\LibNMeCab.dll</HintPath>
+    </Reference>
+    <Reference Include="LibNMeCab.IpaDicBin, Version=0.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LibNMeCab.IpaDicBin.0.10.0\lib\netstandard2.0\LibNMeCab.IpaDicBin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.ObjectPool, Version=9.0.7.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.ObjectPool.9.0.7\lib\net462\Microsoft.Extensions.ObjectPool.dll</HintPath>
     </Reference>
     <Reference Include="MyNihongo.KanaConverter, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MyNihongo.KanaConverter.1.0.4\lib\netstandard2.0\MyNihongo.KanaConverter.dll</HintPath>
-    </Reference>
-    <Reference Include="MyNihongo.KanaDetector, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MyNihongo.KanaDetector.1.0.3\lib\netstandard2.0\MyNihongo.KanaDetector.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -87,9 +94,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ToolGood.Words.FirstPinyin, Version=3.0.1.4, Culture=neutral, PublicKeyToken=d330f4fd115e6143, processorArchitecture=MSIL">
-      <HintPath>..\packages\ToolGood.Words.FirstPinyin.3.0.1.4\lib\net40\ToolGood.Words.FirstPinyin.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -99,6 +103,10 @@
       <Link>SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Api\Fanart\FanartApi.cs" />
+    <Compile Include="Search\SearchText.cs" />
+    <Compile Include="Search\SearchTextProjection.cs" />
+    <Compile Include="Search\IReadingConverter.cs" />
+    <Compile Include="Search\ReadingConverter.cs" />
     <Compile Include="Api\GitHub\GitHubApi.cs" />
     <Compile Include="Api\Lastfm\LastFmAlbum.cs" />
     <Compile Include="Api\Lastfm\LastFmArtist.cs" />
@@ -167,6 +175,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Utils\ArrayUtils.cs" />
+    <Compile Include="Utils\CharacterUtils.cs" />
     <Compile Include="Utils\ColorUtils.cs" />
     <Compile Include="Utils\FormatUtils.cs" />
     <Compile Include="Utils\NumberUtils.cs" />
@@ -175,6 +184,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Content Include="..\packages\LibNMeCab.IpaDicBin.0.10.0\lib\netstandard2.0\LibNMeCab.IpaDicBin.dll">
+      <Link>LibNMeCab.IpaDicBin.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -193,4 +206,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.props'))" />
+    <Error Condition="!Exists('..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.targets'))" />
+  </Target>
+  <Import Project="..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.targets" Condition="Exists('..\packages\LibNMeCab.IpaDicBin.0.10.0\build\LibNMeCab.IpaDicBin.targets')" />
 </Project>
