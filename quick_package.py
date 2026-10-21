@@ -90,7 +90,7 @@ def compile_project() -> None:
     try:
         with open(file_buildlog, "w") as log:
             subprocess.run(
-                [str(MSBuild_exe), str(file_sln), "/p:Configuration=Release", "/p:Platform=Any CPU"],
+                [str(MSBuild_exe), str(file_sln), "/restore", "/p:Configuration=Release", "/p:Platform=Any CPU"],
                 stdout=log,
                 stderr=subprocess.STDOUT,
                 check=True,

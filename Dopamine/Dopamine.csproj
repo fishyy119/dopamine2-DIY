@@ -1,22 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB66D1A5-AB9F-460F-9955-86EB2EB0DD5A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dopamine</RootNamespace>
     <AssemblyName>Dopamine</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -32,6 +23,16 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFramework>net48</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+    <UseWPF>true</UseWPF>
+    <!-- The .NET Framework WinRT bridge is installed in the GAC, outside the SDK reference paths. -->
+    <AssemblySearchPaths>$(AssemblySearchPaths);{GAC}</AssemblySearchPaths>
+    <DesignTimeAssemblySearchPaths>$(DesignTimeAssemblySearchPaths);{GAC}</DesignTimeAssemblySearchPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,9 +62,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.2.0.3\lib\net47\CommonServiceLocator.dll</HintPath>
-    </Reference>
     <Reference Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\CSCore.dll</HintPath>
@@ -76,70 +74,28 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Digimezzo.Foundation.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="DiscordRPC, Version=1.0.175.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
-    </Reference>
-    <Reference Include="DryIoc, Version=2.12.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DryIoc.dll.2.12.8\lib\net45\DryIoc.dll</HintPath>
-    </Reference>
-    <Reference Include="GongSolutions.Wpf.DragDrop, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\gong-wpf-dragdrop.1.1.0\lib\net46\GongSolutions.Wpf.DragDrop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Ionic.Zip">
       <HintPath>Libraries\Ionic.Zip.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Prism, Version=7.0.0.396, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Core.7.0.0.396\lib\net45\Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Prism.DryIoc.Wpf, Version=7.0.0.336, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.DryIoc.7.0.0.336-pre\lib\net45\Prism.DryIoc.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Prism.Wpf, Version=7.0.0.336, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.7.0.0.336-pre\lib\net45\Prism.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite-net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\sqlite-net-pcl.1.4.118\lib\netstandard1.1\SQLite-net.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.9\lib\net45\SQLitePCLRaw.batteries_green.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.9\lib\net45\SQLitePCLRaw.batteries_v2.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.core.1.1.9\lib\net45\SQLitePCLRaw.core.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
-      <HintPath>..\packages\SQLitePCLRaw.provider.e_sqlite3.net45.1.1.9\lib\net45\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
+    <!-- Keep the same drag/drop binary as Dopamine.Core and the legacy packaged output. -->
+    <Reference Include="GongSolutions.WPF.DragDrop">
+      <HintPath>Libraries\GongSolutions.WPF.DragDrop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
-    <Reference Include="System.Runtime.WindowsRuntime">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETCore\v4.5\System.Runtime.WindowsRuntime.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Runtime.WindowsRuntime" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Prism.Wpf.7.0.0.336-pre\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\taglib-sharp.dll</HintPath>
@@ -147,437 +103,292 @@
     <Reference Include="Windows">
       <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\Windows.winmd</HintPath>
     </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="WPFFolderBrowser, Version=1.0.2.0, Culture=neutral, PublicKeyToken=6437333e9e99153e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\WPFFolderBrowser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
+    <Compile Update="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\AccentTextBox.cs" />
-    <Compile Include="Controls\CombiLabel.cs" />
-    <Compile Include="Controls\CrossFadeContentControl.cs" />
-    <Compile Include="Controls\DataGridEx.cs" />
-    <Compile Include="Controls\DropDownButton.cs" />
-    <Compile Include="Controls\FullLogo.xaml.cs">
+    <Compile Update="Controls\FullLogo.xaml.cs">
       <DependentUpon>FullLogo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FullLogoSmall.xaml.cs">
+    <Compile Update="Controls\FullLogoSmall.xaml.cs">
       <DependentUpon>FullLogoSmall.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IconButton.cs" />
-    <Compile Include="Controls\IconMenuButton.cs" />
-    <Compile Include="Controls\IconTextButton.cs" />
-    <Compile Include="Controls\ListCheckBox.cs" />
-    <Compile Include="Controls\Logo.xaml.cs">
+    <Compile Update="Controls\Logo.xaml.cs">
       <DependentUpon>Logo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\LoveButton.cs" />
-    <Compile Include="Controls\PopupEx.cs" />
-    <Compile Include="Controls\RatingButton.cs" />
-    <Compile Include="Controls\ScalingTextBlock.cs" />
-    <Compile Include="Controls\SearchBox.cs" />
-    <Compile Include="Controls\SelectionChangedComboBox.cs" />
-    <Compile Include="Controls\SourceChangedImage.cs" />
-    <Compile Include="Controls\SplitViewRadioButton.cs" />
-    <Compile Include="Controls\SyncRing.cs" />
-    <Compile Include="Controls\Tile.cs" />
-    <Compile Include="Controls\TotalsInformation.cs" />
-    <Compile Include="Controls\TransitioningContentControl.cs" />
-    <Compile Include="Controls\ZoomInContentControl.cs" />
-    <Compile Include="Converters\AddEllipsisConverter.cs" />
-    <Compile Include="Converters\AddValueConverter.cs" />
-    <Compile Include="Converters\BooleanToCenterHorizontalAlignmentConverter.cs" />
-    <Compile Include="Converters\BooleanToCenterTextAlignmentConverter.cs" />
-    <Compile Include="Converters\BooleanToCollapsedConverter.cs" />
-    <Compile Include="Converters\BooleanToOpacityConverter.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Converters\BrushOpacityConverter.cs" />
-    <Compile Include="Converters\EnumConverter.cs" />
-    <Compile Include="Converters\InvertingBooleanConverter.cs" />
-    <Compile Include="Converters\LoveConverter.cs" />
-    <Compile Include="Converters\LyricSourceVisibilityConverter.cs" />
-    <Compile Include="Converters\NullImageConverter.cs" />
-    <Compile Include="Converters\PathToImageConverter.cs" />
-    <Compile Include="Converters\PercentSizeConverter.cs" />
-    <Compile Include="Converters\RatingConverter.cs" />
-    <Compile Include="Converters\SolidColorBrushToColorConverter.cs" />
-    <Compile Include="Converters\StringEmptyToInvisibleConverter.cs" />
-    <Compile Include="Converters\StringEmptyToVisibleConverter.cs" />
-    <Compile Include="Converters\StringToLowerConverter.cs" />
-    <Compile Include="Converters\StringToUpperConverter.cs" />
-    <Compile Include="Initializer.cs" />
-    <Compile Include="Services\Notification\LegacyNotificationService.cs" />
-    <Compile Include="Services\Notification\NotificationService.cs" />
-    <Compile Include="Services\Notification\NotificationWindow.xaml.cs">
+    <Compile Update="Services\Notification\NotificationWindow.xaml.cs">
       <DependentUpon>NotificationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Services\Shell\ShellService.cs" />
-    <Compile Include="SharedAssemblyInfo.cs" />
-    <Compile Include="Controls\SpectrumAnalyzer.cs" />
-    <Compile Include="Utils\BindingProxy.cs" />
-    <Compile Include="Utils\OpenFileUtils.cs" />
-    <Compile Include="Utils\SaveFileUtils.cs" />
-    <Compile Include="Utils\SlidingContentControlRegionAdapter.cs" />
-    <Compile Include="Utils\UriUtils.cs" />
-    <Compile Include="ViewModels\ArtistInfoViewModel.cs" />
-    <Compile Include="ViewModels\Common\AppearanceLanguageViewModel.cs" />
-    <Compile Include="ViewModels\Common\AppearanceThemeViewModel.cs" />
-    <Compile Include="ViewModels\Common\ArtistInfoControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\BackgroundCoverArtControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\Base\AlbumsViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\Base\CommonViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\Base\ContextMenuViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\Base\EditMetadataBase.cs" />
-    <Compile Include="ViewModels\Common\Base\MiniPlayerViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\Base\NowPlayingViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\Base\PlaybackControlsViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\Base\TracksViewModelBase.cs" />
-    <Compile Include="ViewModels\Common\CollectionFoldersSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Common\CollectionPlaybackControlsViewModel.cs" />
-    <Compile Include="ViewModels\Common\CompactPlaybackControlsViewModel.cs" />
-    <Compile Include="ViewModels\Common\CoverArtControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\CoverPlaybackInfoControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\EditAlbumViewModel.cs" />
-    <Compile Include="ViewModels\Common\EditTrackViewModel.cs" />
-    <Compile Include="ViewModels\Common\EqualizerControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\FileInformationViewModel.cs" />
-    <Compile Include="ViewModels\Common\HorizontalVolumeControlsViewModel.cs" />
-    <Compile Include="ViewModels\Common\IndexingStatusViewModel.cs" />
-    <Compile Include="ViewModels\Common\LyricsControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\LyricsViewModel.cs" />
-    <Compile Include="ViewModels\Common\NothingPlayingControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\NowPlayingControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\NowPlayingPlaybackControlsViewModel.cs" />
-    <Compile Include="ViewModels\Common\PlayAllControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\PlaybackControlsWithPlaylistNotificationViewModel.cs" />
-    <Compile Include="ViewModels\Common\PlaybackInfoControlNanoViewModel.cs" />
-    <Compile Include="ViewModels\Common\PlaybackInfoControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\PopupVolumeControlsViewModel.cs" />
-    <Compile Include="ViewModels\Common\ProgressControlsThinViewModel.cs" />
-    <Compile Include="ViewModels\Common\ProgressControlsViewModel.cs" />
-    <Compile Include="ViewModels\Common\ProgressControlsWithTimeViewModel.cs" />
-    <Compile Include="ViewModels\Common\SearchControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\ShuffleAllControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\SpectrumAnalyzerControlViewModel.cs" />
-    <Compile Include="ViewModels\Common\UpdateStatusViewModel.cs" />
-    <Compile Include="ViewModels\CoverArtViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionAlbumsViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionArtistsViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionFoldersViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionGenresViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionMenuViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionPlaylistEditorViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionPlaylistsViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionTracksColumnsViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionTracksViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Collection\CollectionUtils.cs" />
-    <Compile Include="ViewModels\FullPlayer\FullPlayerAddMusicViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\FullPlayerViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Information\InformationAboutLicenseViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Information\InformationAboutViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Information\InformationHelpViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Information\InformationMenuViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Information\InformationViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsAppearanceViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsBehaviourViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsBlacklistViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsMenuViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsOnlineAddEditSearchProviderViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsOnlineViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsPlaybackViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsStartupViewModel.cs" />
-    <Compile Include="ViewModels\FullPlayer\Settings\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\InitializeViewModel.cs" />
-    <Compile Include="ViewModels\MiniPlayer\CoverPlayerViewModel.cs" />
-    <Compile Include="ViewModels\MiniPlayer\MicroPlayerViewModel.cs" />
-    <Compile Include="ViewModels\MiniPlayer\MiniPlayerPlaylistViewModel.cs" />
-    <Compile Include="ViewModels\MiniPlayer\NanoPlayerViewModel.cs" />
-    <Compile Include="ViewModels\NowPlaying\NowPlayingPlaylistViewModel.cs" />
-    <Compile Include="ViewModels\NowPlaying\NowPlayingShowcaseViewModel.cs" />
-    <Compile Include="ViewModels\NowPlaying\NowPlayingViewModel.cs" />
-    <Compile Include="ViewModels\OobeViewModel.cs" />
-    <Compile Include="ViewModels\PlaybackControlsViewModel.cs" />
-    <Compile Include="ViewModels\PlaybackInfoViewModel.cs" />
-    <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\SimilarArtistViewModel.cs" />
-    <Compile Include="ViewModels\VerticalVolumeControlsViewModel.cs" />
-    <Compile Include="ViewModels\VolumeControlsViewModel.cs" />
-    <Compile Include="Views\Base\VolumeControlViewBase.cs" />
-    <Compile Include="Views\Common\AppearanceLanguage.xaml.cs">
+    <Compile Update="Views\Common\AppearanceLanguage.xaml.cs">
       <DependentUpon>AppearanceLanguage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\AppearanceTheme.xaml.cs">
+    <Compile Update="Views\Common\AppearanceTheme.xaml.cs">
       <DependentUpon>AppearanceTheme.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\ArtistInfoControl.xaml.cs">
+    <Compile Update="Views\Common\ArtistInfoControl.xaml.cs">
       <DependentUpon>ArtistInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\BackgroundCoverArtControl.xaml.cs">
+    <Compile Update="Views\Common\BackgroundCoverArtControl.xaml.cs">
       <DependentUpon>BackgroundCoverArtControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\Base\CommonViewBase.cs" />
-    <Compile Include="Views\Common\Base\MiniPlayerViewBase.cs" />
-    <Compile Include="Views\Common\Base\TracksViewBase.cs" />
-    <Compile Include="Views\Common\CollectionFoldersSettings.xaml.cs">
+    <Compile Update="Views\Common\CollectionFoldersSettings.xaml.cs">
       <DependentUpon>CollectionFoldersSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\CollectionPlaybackControls.xaml.cs">
+    <Compile Update="Views\Common\CollectionPlaybackControls.xaml.cs">
       <DependentUpon>CollectionPlaybackControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\CompactPlaybackControls.xaml.cs">
+    <Compile Update="Views\Common\CompactPlaybackControls.xaml.cs">
       <DependentUpon>CompactPlaybackControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\CoverArtControl.xaml.cs">
+    <Compile Update="Views\Common\CoverArtControl.xaml.cs">
       <DependentUpon>CoverArtControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\CoverPlaybackInfoControl.xaml.cs">
+    <Compile Update="Views\Common\CoverPlaybackInfoControl.xaml.cs">
       <DependentUpon>CoverPlaybackInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\CoverPlayerControls.xaml.cs">
+    <Compile Update="Views\Common\CoverPlayerControls.xaml.cs">
       <DependentUpon>CoverPlayerControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\EditAlbum.xaml.cs">
+    <Compile Update="Views\Common\EditAlbum.xaml.cs">
       <DependentUpon>EditAlbum.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\EditTrack.xaml.cs">
+    <Compile Update="Views\Common\EditTrack.xaml.cs">
       <DependentUpon>EditTrack.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\EditTrackLyricsControl.xaml.cs">
+    <Compile Update="Views\Common\EditTrackLyricsControl.xaml.cs">
       <DependentUpon>EditTrackLyricsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\EditTrackTagsControl.xaml.cs">
+    <Compile Update="Views\Common\EditTrackTagsControl.xaml.cs">
       <DependentUpon>EditTrackTagsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\EqualizerControl.xaml.cs">
+    <Compile Update="Views\Common\EqualizerControl.xaml.cs">
       <DependentUpon>EqualizerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\EqualizerIcon.xaml.cs">
+    <Compile Update="Views\Common\EqualizerIcon.xaml.cs">
       <DependentUpon>EqualizerIcon.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\FileInformation.xaml.cs">
+    <Compile Update="Views\Common\FileInformation.xaml.cs">
       <DependentUpon>FileInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\HorizontalVolumeControls.xaml.cs">
+    <Compile Update="Views\Common\HorizontalVolumeControls.xaml.cs">
       <DependentUpon>HorizontalVolumeControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\IndexingStatus.xaml.cs">
+    <Compile Update="Views\Common\IndexingStatus.xaml.cs">
       <DependentUpon>IndexingStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\LyricsControl.xaml.cs">
+    <Compile Update="Views\Common\LyricsControl.xaml.cs">
       <DependentUpon>LyricsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\MicroPlayerControls.xaml.cs">
+    <Compile Update="Views\Common\MicroPlayerControls.xaml.cs">
       <DependentUpon>MicroPlayerControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\NanoPlayerControls.xaml.cs">
+    <Compile Update="Views\Common\NanoPlayerControls.xaml.cs">
       <DependentUpon>NanoPlayerControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\WindowControls.xaml.cs">
+    <Compile Update="Views\Common\WindowControls.xaml.cs">
       <DependentUpon>WindowControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\NothingPlayingControl.xaml.cs">
+    <Compile Update="Views\Common\NothingPlayingControl.xaml.cs">
       <DependentUpon>NothingPlayingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\NowPlayingControl.xaml.cs">
+    <Compile Update="Views\Common\NowPlayingControl.xaml.cs">
       <DependentUpon>NowPlayingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\NowPlayingPlaybackControls.xaml.cs">
+    <Compile Update="Views\Common\NowPlayingPlaybackControls.xaml.cs">
       <DependentUpon>NowPlayingPlaybackControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\PlayAllControl.xaml.cs">
+    <Compile Update="Views\Common\PlayAllControl.xaml.cs">
       <DependentUpon>PlayAllControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\PlaybackControlsWithPlaylistNotification.xaml.cs">
+    <Compile Update="Views\Common\PlaybackControlsWithPlaylistNotification.xaml.cs">
       <DependentUpon>PlaybackControlsWithPlaylistNotification.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\PlaybackInfoControl.xaml.cs">
+    <Compile Update="Views\Common\PlaybackInfoControl.xaml.cs">
       <DependentUpon>PlaybackInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\PlaybackInfoControlNano.xaml.cs">
+    <Compile Update="Views\Common\PlaybackInfoControlNano.xaml.cs">
       <DependentUpon>PlaybackInfoControlNano.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\PopupVolumeControls.xaml.cs">
+    <Compile Update="Views\Common\PopupVolumeControls.xaml.cs">
       <DependentUpon>PopupVolumeControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\ProgressControls.xaml.cs">
+    <Compile Update="Views\Common\ProgressControls.xaml.cs">
       <DependentUpon>ProgressControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\ProgressControlsThin.xaml.cs">
+    <Compile Update="Views\Common\ProgressControlsThin.xaml.cs">
       <DependentUpon>ProgressControlsThin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\ProgressControlsWithTime.xaml.cs">
+    <Compile Update="Views\Common\ProgressControlsWithTime.xaml.cs">
       <DependentUpon>ProgressControlsWithTime.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\SearchControl.xaml.cs">
+    <Compile Update="Views\Common\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\ShuffleAllControl.xaml.cs">
+    <Compile Update="Views\Common\ShuffleAllControl.xaml.cs">
       <DependentUpon>ShuffleAllControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\TimeControl.xaml.cs">
+    <Compile Update="Views\Common\TimeControl.xaml.cs">
       <DependentUpon>TimeControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\SpectrumAnalyzerControl.xaml.cs">
+    <Compile Update="Views\Common\SpectrumAnalyzerControl.xaml.cs">
       <DependentUpon>SpectrumAnalyzerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\UpdateStatus.xaml.cs">
+    <Compile Update="Views\Common\UpdateStatus.xaml.cs">
       <DependentUpon>UpdateStatus.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Empty.xaml.cs">
+    <Compile Update="Views\Empty.xaml.cs">
       <DependentUpon>Empty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\Collection.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\Collection.xaml.cs">
       <DependentUpon>Collection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionAlbums.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionAlbums.xaml.cs">
       <DependentUpon>CollectionAlbums.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionArtists.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionArtists.xaml.cs">
       <DependentUpon>CollectionArtists.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionFolders.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionFolders.xaml.cs">
       <DependentUpon>CollectionFolders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionGenres.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionGenres.xaml.cs">
       <DependentUpon>CollectionGenres.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionMenu.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionMenu.xaml.cs">
       <DependentUpon>CollectionMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionPlaylists.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionPlaylists.xaml.cs">
       <DependentUpon>CollectionPlaylists.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionPlaylistEditor.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionPlaylistEditor.xaml.cs">
       <DependentUpon>CollectionPlaylistEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionSmartPlaylistEditor.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionSmartPlaylistEditor.xaml.cs">
       <DependentUpon>CollectionSmartPlaylistEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionStaticPlaylistEditor.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionStaticPlaylistEditor.xaml.cs">
       <DependentUpon>CollectionStaticPlaylistEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionTracks.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionTracks.xaml.cs">
       <DependentUpon>CollectionTracks.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Collection\CollectionTracksColumns.xaml.cs">
+    <Compile Update="Views\FullPlayer\Collection\CollectionTracksColumns.xaml.cs">
       <DependentUpon>CollectionTracksColumns.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\FullPlayer.xaml.cs">
+    <Compile Update="Views\FullPlayer\FullPlayer.xaml.cs">
       <DependentUpon>FullPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\FullPlayerAddMusic.xaml.cs">
+    <Compile Update="Views\FullPlayer\FullPlayerAddMusic.xaml.cs">
       <DependentUpon>FullPlayerAddMusic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Information\Information.xaml.cs">
+    <Compile Update="Views\FullPlayer\Information\Information.xaml.cs">
       <DependentUpon>Information.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Information\InformationAbout.xaml.cs">
+    <Compile Update="Views\FullPlayer\Information\InformationAbout.xaml.cs">
       <DependentUpon>InformationAbout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Information\InformationAboutLicense.xaml.cs">
+    <Compile Update="Views\FullPlayer\Information\InformationAboutLicense.xaml.cs">
       <DependentUpon>InformationAboutLicense.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Information\InformationHelp.xaml.cs">
+    <Compile Update="Views\FullPlayer\Information\InformationHelp.xaml.cs">
       <DependentUpon>InformationHelp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Information\InformationMenu.xaml.cs">
+    <Compile Update="Views\FullPlayer\Information\InformationMenu.xaml.cs">
       <DependentUpon>InformationMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\Settings.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsAppearance.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsAppearance.xaml.cs">
       <DependentUpon>SettingsAppearance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsBehaviour.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsBehaviour.xaml.cs">
       <DependentUpon>SettingsBehaviour.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsBlacklist.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsBlacklist.xaml.cs">
       <DependentUpon>SettingsBlacklist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsMenu.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsMenu.xaml.cs">
       <DependentUpon>SettingsMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsOnline.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsOnline.xaml.cs">
       <DependentUpon>SettingsOnline.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsOnlineAddEditSearchProvider.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsOnlineAddEditSearchProvider.xaml.cs">
       <DependentUpon>SettingsOnlineAddEditSearchProvider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsPlayback.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsPlayback.xaml.cs">
       <DependentUpon>SettingsPlayback.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\FullPlayer\Settings\SettingsStartup.xaml.cs">
+    <Compile Update="Views\FullPlayer\Settings\SettingsStartup.xaml.cs">
       <DependentUpon>SettingsStartup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MiniPlayer\CoverPlayer.xaml.cs">
+    <Compile Update="Views\MiniPlayer\CoverPlayer.xaml.cs">
       <DependentUpon>CoverPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MiniPlayer\MicroPlayer.xaml.cs">
+    <Compile Update="Views\MiniPlayer\MicroPlayer.xaml.cs">
       <DependentUpon>MicroPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MiniPlayer\NanoPlayer.xaml.cs">
+    <Compile Update="Views\MiniPlayer\NanoPlayer.xaml.cs">
       <DependentUpon>NanoPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NowPlaying\NowPlayingArtistInformation.xaml.cs">
+    <Compile Update="Views\NowPlaying\NowPlayingArtistInformation.xaml.cs">
       <DependentUpon>NowPlayingArtistInformation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NowPlaying\NowPlayingLyrics.xaml.cs">
+    <Compile Update="Views\NowPlaying\NowPlayingLyrics.xaml.cs">
       <DependentUpon>NowPlayingLyrics.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NowPlaying\NowPlaying.xaml.cs">
+    <Compile Update="Views\NowPlaying\NowPlaying.xaml.cs">
       <DependentUpon>NowPlaying.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NowPlaying\NowPlayingPlaylist.xaml.cs">
+    <Compile Update="Views\NowPlaying\NowPlayingPlaylist.xaml.cs">
       <DependentUpon>NowPlayingPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NowPlaying\NowPlayingShowcase.xaml.cs">
+    <Compile Update="Views\NowPlaying\NowPlayingShowcase.xaml.cs">
       <DependentUpon>NowPlayingShowcase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Oobe.xaml.cs">
+    <Compile Update="Views\Oobe.xaml.cs">
       <DependentUpon>Oobe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MiniPlayer\MiniPlayerPlaylist.xaml.cs">
+    <Compile Update="Views\MiniPlayer\MiniPlayerPlaylist.xaml.cs">
       <DependentUpon>MiniPlayerPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PlaybackControls.xaml.cs">
+    <Compile Update="Views\PlaybackControls.xaml.cs">
       <DependentUpon>PlaybackControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shell.xaml.cs">
+    <Compile Update="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Common\TrayControls.xaml.cs">
+    <Compile Update="Views\Common\TrayControls.xaml.cs">
       <DependentUpon>TrayControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Initialize.xaml.cs">
+    <Compile Update="Views\Initialize.xaml.cs">
       <DependentUpon>Initialize.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VerticalVolumeControls.xaml.cs">
+    <Compile Update="Views\VerticalVolumeControls.xaml.cs">
       <DependentUpon>VerticalVolumeControls.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
+    <Compile Update="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -585,13 +396,10 @@
     <Content Include="Tools\M3U Manager.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include=".editorconfig" />
-    <None Include="App.config" />
-    <None Include="app.manifest" />
     <Content Include="BaseSettings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -649,13 +457,11 @@
     <Content Include="Equalizer\Techno.deq">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
+    <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Settings.XamlStyler" />
     <Resource Include="Resources\Fonts\segmdl2.ttf" />
     <Resource Include="Resources\Fonts\Monoglyceride.ttf" />
     <Resource Include="Resources\Fonts\MaterialIcons-Regular.ttf" />
@@ -885,622 +691,594 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Digimezzo.Foundation.Core\Digimezzo.Foundation.Core.csproj">
-      <Project>{f376ccca-325f-4533-934d-a9c4a7cfc69b}</Project>
-      <Name>Digimezzo.Foundation.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dopamine.Core\Dopamine.Core.csproj">
-      <Project>{7FAAC843-6AA9-4B5B-8678-937137A61E47}</Project>
-      <Name>Dopamine.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dopamine.Data\Dopamine.Data.csproj">
-      <Project>{3AA1D889-7AAF-4385-A373-8E2757D47FD4}</Project>
-      <Name>Dopamine.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dopamine.Packager\Dopamine.Packager.csproj">
-      <Project>{f32533fd-96b4-4b94-8844-3efa1f63f52a}</Project>
-      <Name>Dopamine.Packager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Dopamine.Services\Dopamine.Services.csproj">
-      <Project>{C7C13D3A-BEF1-4825-9C60-14AAEC9714B3}</Project>
-      <Name>Dopamine.Services</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Digimezzo.Foundation.Core\Digimezzo.Foundation.Core.csproj" />
+    <ProjectReference Include="..\Dopamine.Core\Dopamine.Core.csproj" />
+    <ProjectReference Include="..\Dopamine.Data\Dopamine.Data.csproj" />
+    <ProjectReference Include="..\Dopamine.Packager\Dopamine.Packager.csproj" />
+    <ProjectReference Include="..\Dopamine.Services\Dopamine.Services.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\FullLogo.xaml">
+    <Page Update="Controls\FullLogo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\FullLogoSmall.xaml">
+    <Page Update="Controls\FullLogoSmall.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Logo.xaml">
+    <Page Update="Controls\Logo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Converters\Converters.xaml">
+    <Page Update="Converters\Converters.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\AllStyles.xaml">
+    <Page Update="Resources\Styles\AllStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\Animations.xaml">
+    <Page Update="Resources\Styles\Animations.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\Buttons.xaml">
+    <Page Update="Resources\Styles\Buttons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ColorSchemeButtons.xaml">
+    <Page Update="Resources\Styles\ColorSchemeButtons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ContextMenu.xaml">
+    <Page Update="Resources\Styles\ContextMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ContextMenuButton.xaml">
+    <Page Update="Resources\Styles\ContextMenuButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\DataGridTracks.xaml">
+    <Page Update="Resources\Styles\DataGridTracks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\FontStyles.xaml">
+    <Page Update="Resources\Styles\FontStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\Geometries.xaml">
+    <Page Update="Resources\Styles\Geometries.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\HotKey.xaml">
+    <Page Update="Resources\Styles\HotKey.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\LinkButton.xaml">
+    <Page Update="Resources\Styles\LinkButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxAlbums.xaml">
+    <Page Update="Resources\Styles\ListBoxAlbums.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxArtists.xaml">
+    <Page Update="Resources\Styles\ListBoxArtists.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxBlacklistTracks.xaml">
+    <Page Update="Resources\Styles\ListBoxBlacklistTracks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\ListBoxFolders.xaml">
+    <Page Update="Resources\Styles\ListBoxFolders.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxFolderTracks.xaml">
+    <Page Update="Resources\Styles\ListBoxFolderTracks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\ListBoxGenres.xaml">
+    <Page Update="Resources\Styles\ListBoxGenres.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxNowPlayingTracks.xaml">
+    <Page Update="Resources\Styles\ListBoxNowPlayingTracks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxPlaylists.xaml">
+    <Page Update="Resources\Styles\ListBoxPlaylists.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxPlaylistTracks.xaml">
+    <Page Update="Resources\Styles\ListBoxPlaylistTracks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxSemanticZoom.xaml">
+    <Page Update="Resources\Styles\ListBoxSemanticZoom.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxSimilarArtists.xaml">
+    <Page Update="Resources\Styles\ListBoxSimilarArtists.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListBoxSmartPlaylistRules.xaml">
+    <Page Update="Resources\Styles\ListBoxSmartPlaylistRules.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\ListBoxSubfolderBreadCrumbs.xaml">
+    <Page Update="Resources\Styles\ListBoxSubfolderBreadCrumbs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\ListBoxSubfolders.xaml">
+    <Page Update="Resources\Styles\ListBoxSubfolders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\ListBoxTracks.xaml">
+    <Page Update="Resources\Styles\ListBoxTracks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ListHeaderComboBox.xaml">
+    <Page Update="Resources\Styles\ListHeaderComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Styles\MetroCheckBox.xaml">
+    <Page Update="Resources\Styles\MetroCheckBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\MetroComboBox.xaml">
+    <Page Update="Resources\Styles\MetroComboBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\MetroListBox.xaml">
+    <Page Update="Resources\Styles\MetroListBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\MetroTextBox.xaml">
+    <Page Update="Resources\Styles\MetroTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\MenuPivot.xaml">
+    <Page Update="Resources\Styles\MenuPivot.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\PlaybackIndicator.xaml">
+    <Page Update="Resources\Styles\PlaybackIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\ScrollBar.xaml">
+    <Page Update="Resources\Styles\ScrollBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\SpectrumAnalyzer.xaml">
+    <Page Update="Resources\Styles\SpectrumAnalyzer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\StackPanelConditionEnabled.xaml">
+    <Page Update="Resources\Styles\StackPanelConditionEnabled.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\Texts.xaml">
+    <Page Update="Resources\Styles\Texts.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\Tooltip.xaml">
+    <Page Update="Resources\Styles\Tooltip.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Styles\WindowButton.xaml">
+    <Page Update="Resources\Styles\WindowButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Themes\Common.xaml">
+    <Page Update="Resources\Themes\Common.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Themes\Dark.xaml">
+    <Page Update="Resources\Themes\Dark.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Themes\Light.xaml">
+    <Page Update="Resources\Themes\Light.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Services\Notification\NotificationWindow.xaml">
+    <Page Update="Services\Notification\NotificationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\AccentTextBox.xaml">
+    <Page Update="Themes\AccentTextBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\CombiLabel.xaml">
+    <Page Update="Themes\CombiLabel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\CrossFadeContentControl.xaml">
+    <Page Update="Themes\CrossFadeContentControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Generic.xaml">
+    <Page Update="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\IconButton.xaml">
+    <Page Update="Themes\IconButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\IconMenuButton.xaml">
+    <Page Update="Themes\IconMenuButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\IconTextButton.xaml">
+    <Page Update="Themes\IconTextButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\ListCheckBox.xaml">
+    <Page Update="Themes\ListCheckBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\LoveButton.xaml">
+    <Page Update="Themes\LoveButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\RatingButton.xaml">
+    <Page Update="Themes\RatingButton.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\SearchBox.xaml">
+    <Page Update="Themes\SearchBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\SplitViewRadioButton.xaml">
+    <Page Update="Themes\SplitViewRadioButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\SyncRing.xaml">
+    <Page Update="Themes\SyncRing.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\Tile.xaml">
+    <Page Update="Themes\Tile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\TotalsInformation.xaml">
+    <Page Update="Themes\TotalsInformation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\AppearanceLanguage.xaml">
+    <Page Update="Views\Common\AppearanceLanguage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\AppearanceTheme.xaml">
+    <Page Update="Views\Common\AppearanceTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\ArtistInfoControl.xaml">
+    <Page Update="Views\Common\ArtistInfoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\BackgroundCoverArtControl.xaml">
+    <Page Update="Views\Common\BackgroundCoverArtControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\CollectionFoldersSettings.xaml">
+    <Page Update="Views\Common\CollectionFoldersSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\CollectionPlaybackControls.xaml">
+    <Page Update="Views\Common\CollectionPlaybackControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\CompactPlaybackControls.xaml">
+    <Page Update="Views\Common\CompactPlaybackControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\CoverArtControl.xaml">
+    <Page Update="Views\Common\CoverArtControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\CoverPlaybackInfoControl.xaml">
+    <Page Update="Views\Common\CoverPlaybackInfoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\CoverPlayerControls.xaml">
+    <Page Update="Views\Common\CoverPlayerControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\EditAlbum.xaml">
+    <Page Update="Views\Common\EditAlbum.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\EditTrack.xaml">
+    <Page Update="Views\Common\EditTrack.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\EditTrackLyricsControl.xaml">
+    <Page Update="Views\Common\EditTrackLyricsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\EditTrackTagsControl.xaml">
+    <Page Update="Views\Common\EditTrackTagsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\EqualizerControl.xaml">
+    <Page Update="Views\Common\EqualizerControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\EqualizerIcon.xaml">
+    <Page Update="Views\Common\EqualizerIcon.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\FileInformation.xaml">
+    <Page Update="Views\Common\FileInformation.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\HorizontalVolumeControls.xaml">
+    <Page Update="Views\Common\HorizontalVolumeControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\IndexingStatus.xaml">
+    <Page Update="Views\Common\IndexingStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\LyricsControl.xaml">
+    <Page Update="Views\Common\LyricsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\MicroPlayerControls.xaml">
+    <Page Update="Views\Common\MicroPlayerControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\NanoPlayerControls.xaml">
+    <Page Update="Views\Common\NanoPlayerControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\WindowControls.xaml">
+    <Page Update="Views\Common\WindowControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\NothingPlayingControl.xaml">
+    <Page Update="Views\Common\NothingPlayingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\NowPlayingControl.xaml">
+    <Page Update="Views\Common\NowPlayingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\NowPlayingPlaybackControls.xaml">
+    <Page Update="Views\Common\NowPlayingPlaybackControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\PlayAllControl.xaml">
+    <Page Update="Views\Common\PlayAllControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\PlaybackControlsWithPlaylistNotification.xaml">
+    <Page Update="Views\Common\PlaybackControlsWithPlaylistNotification.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\PlaybackInfoControl.xaml">
+    <Page Update="Views\Common\PlaybackInfoControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\PlaybackInfoControlNano.xaml">
+    <Page Update="Views\Common\PlaybackInfoControlNano.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\PopupVolumeControls.xaml">
+    <Page Update="Views\Common\PopupVolumeControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\ProgressControls.xaml">
+    <Page Update="Views\Common\ProgressControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\ProgressControlsThin.xaml">
+    <Page Update="Views\Common\ProgressControlsThin.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\ProgressControlsWithTime.xaml">
+    <Page Update="Views\Common\ProgressControlsWithTime.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\SearchControl.xaml">
+    <Page Update="Views\Common\SearchControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\ShuffleAllControl.xaml">
+    <Page Update="Views\Common\ShuffleAllControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\TimeControl.xaml">
+    <Page Update="Views\Common\TimeControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\SpectrumAnalyzerControl.xaml">
+    <Page Update="Views\Common\SpectrumAnalyzerControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Common\UpdateStatus.xaml">
+    <Page Update="Views\Common\UpdateStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Empty.xaml">
+    <Page Update="Views\Empty.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\Collection.xaml">
+    <Page Update="Views\FullPlayer\Collection\Collection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionAlbums.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionAlbums.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionArtists.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionArtists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionFolders.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionFolders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionGenres.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionGenres.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionMenu.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionPlaylists.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionPlaylists.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionPlaylistEditor.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionPlaylistEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionSmartPlaylistEditor.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionSmartPlaylistEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionStaticPlaylistEditor.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionStaticPlaylistEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionTracks.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionTracks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Collection\CollectionTracksColumns.xaml">
+    <Page Update="Views\FullPlayer\Collection\CollectionTracksColumns.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\FullPlayer.xaml">
+    <Page Update="Views\FullPlayer\FullPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\FullPlayer\FullPlayerAddMusic.xaml">
+    <Page Update="Views\FullPlayer\FullPlayerAddMusic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Information\Information.xaml">
+    <Page Update="Views\FullPlayer\Information\Information.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Information\InformationAbout.xaml">
+    <Page Update="Views\FullPlayer\Information\InformationAbout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Information\InformationAboutLicense.xaml">
+    <Page Update="Views\FullPlayer\Information\InformationAboutLicense.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Information\InformationHelp.xaml">
+    <Page Update="Views\FullPlayer\Information\InformationHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Information\InformationMenu.xaml">
+    <Page Update="Views\FullPlayer\Information\InformationMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\Settings.xaml">
+    <Page Update="Views\FullPlayer\Settings\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsAppearance.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsAppearance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsBehaviour.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsBehaviour.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsBlacklist.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsBlacklist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsMenu.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsOnline.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsOnline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsOnlineAddEditSearchProvider.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsOnlineAddEditSearchProvider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsPlayback.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsPlayback.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\FullPlayer\Settings\SettingsStartup.xaml">
+    <Page Update="Views\FullPlayer\Settings\SettingsStartup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MiniPlayer\CoverPlayer.xaml">
+    <Page Update="Views\MiniPlayer\CoverPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MiniPlayer\MicroPlayer.xaml">
+    <Page Update="Views\MiniPlayer\MicroPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MiniPlayer\NanoPlayer.xaml">
+    <Page Update="Views\MiniPlayer\NanoPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\NowPlaying\NowPlayingArtistInformation.xaml">
+    <Page Update="Views\NowPlaying\NowPlayingArtistInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NowPlaying\NowPlayingLyrics.xaml">
+    <Page Update="Views\NowPlaying\NowPlayingLyrics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NowPlaying\NowPlaying.xaml">
+    <Page Update="Views\NowPlaying\NowPlaying.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NowPlaying\NowPlayingPlaylist.xaml">
+    <Page Update="Views\NowPlaying\NowPlayingPlaylist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NowPlaying\NowPlayingShowcase.xaml">
+    <Page Update="Views\NowPlaying\NowPlayingShowcase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Oobe.xaml">
+    <Page Update="Views\Oobe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MiniPlayer\MiniPlayerPlaylist.xaml">
+    <Page Update="Views\MiniPlayer\MiniPlayerPlaylist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PlaybackControls.xaml">
+    <Page Update="Views\PlaybackControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Shell.xaml">
+    <Page Update="Views\Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Common\TrayControls.xaml">
+    <Page Update="Views\Common\TrayControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Initialize.xaml">
+    <Page Update="Views\Initialize.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\VerticalVolumeControls.xaml">
+    <Page Update="Views\VerticalVolumeControls.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets'))" />
-    <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets'))" />
-    <Error Condition="!Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets'))" />
-  </Target>
-  <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" />
-  <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.9\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
@@ -1508,4 +1286,21 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.3" />
+    <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
+    <PackageReference Include="DryIoc.dll" Version="2.12.8" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="1.1.0" ExcludeAssets="compile;runtime" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Prism.Core" Version="7.0.0.396" />
+    <PackageReference Include="Prism.DryIoc" Version="7.0.0.336-pre" />
+    <PackageReference Include="Prism.Wpf" Version="7.0.0.336-pre" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.4.118" />
+    <PackageReference Include="SQLitePCLRaw.bundle_green" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.core" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.linux" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.9" />
+    <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.9" />
+  </ItemGroup>
 </Project>

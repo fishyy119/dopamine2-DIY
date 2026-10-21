@@ -56,6 +56,7 @@ The `quick_package.py` script can automatically package Dopamine by performing t
 3. **Compile the project using MSBuild.**
 
    * The script contains a hardcoded MSBuild path, which may need to be adjusted manually.
+   * MSBuild restores the SDK projects' NuGet packages before compiling.
    * The compilation produces the main application as well as the packaging helper `Packager.exe`.
 
 4. **Package the project using `Dopamine.Packager.exe`.**
