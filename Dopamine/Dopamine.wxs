@@ -194,7 +194,7 @@
 						</File>
 						<File Source="Dopamine.exe.config" />
 						<File Source="License.txt" />
-						<File Source="Changelog.txt" />
+						<File Source="CHANGELOG.md" />
 						<File Source="BaseSettings.xml" />
 						<File Source="CommonServiceLocator.dll" />
 						<File Source="Prism.dll" />
