@@ -78,6 +78,17 @@
 							</Directory>
 						</Directory>
 					</Directory>
+					<!-- 日语读音词典 -->
+					<Directory Id="IPADICFOLDER" Name="IpaDic">
+						<Component Id="IPADICCMP" DiskId="1" Guid="BD4E5289-8D39-4CE6-9CF3-46ABBA8DAF16">
+							<File Source="IpaDic\char.bin" />
+							<File Source="IpaDic\matrix.bin" />
+							<File Source="IpaDic\sys.dic" />
+							<File Source="IpaDic\unk.dic" />
+							<File Source="IpaDic\AUTHORS" />
+							<File Source="IpaDic\COPYING" />
+						</Component>
+					</Directory>
 					<!-- SQLite -->
 					<Directory Id="X64FOLDER" Name="x64">
 						<Component Id="X64CMP" DiskId="1" Guid="89332F0B-AF41-49AC-9B8D-D1E8AD9E50F1">
@@ -213,8 +224,9 @@
 						<File Source="Newtonsoft.Json.dll" />
 						<File Source="Colourful.dll" />
 						<File Source="MyNihongo.KanaConverter.dll" />
-						<File Source="MyNihongo.KanaDetector.dll" />
-						<File Source="ToolGood.Words.FirstPinyin.dll" />
+						<File Source="EzPinyin.dll" />
+						<File Source="LibNMeCab.dll" />
+						<File Source="LibNMeCab.IpaDicBin.dll" />
 						<File Source="Microsoft.Extensions.ObjectPool.dll" />
 
 						<!-- Registry -->
@@ -299,6 +311,7 @@
 			<ComponentRef Id="EQUALIZERCMP" />
 			<ComponentRef Id="TOOLSCMP" />
 			<ComponentRef Id="MAINCMP" />
+			<ComponentRef Id="IPADICCMP" />
 			<ComponentRef Id="X64CMP" />
 			<ComponentRef Id="X86CMP" />
 		</Feature>

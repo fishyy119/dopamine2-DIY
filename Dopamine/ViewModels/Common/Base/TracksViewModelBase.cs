@@ -174,7 +174,7 @@ namespace Dopamine.ViewModels.Common.Base
         protected void TracksCvs_Filter(object sender, FilterEventArgs e)
         {
             TrackViewModel track = e.Item as TrackViewModel;
-            e.Accepted = EntityUtils.FilterTracks(track, this.searchService.SearchText);
+            e.Accepted = EntityUtils.FilterTracks(track, this.searchService);
         }
 
         protected async Task GetTracksAsync(IList<string> artists, IList<string> genres, IList<AlbumViewModel> albumViewModels, TrackOrder trackOrder)
@@ -237,6 +237,7 @@ namespace Dopamine.ViewModels.Common.Base
 
                 // Order the Tracks
                 List<TrackViewModel> orderedTrackViewModels = await EntityUtils.OrderTracksAsync(tracks, trackOrder);
+                _ = this.searchService.PrepareAsync(orderedTrackViewModels.SelectMany(EntityUtils.GetSearchFields));
 
                 // Unbind to improve UI performance
                 this.ClearTracks();

@@ -4,9 +4,8 @@ using Dopamine.Core.Extensions;
 using System;
 using System.Globalization;
 using System.Text;
-using ToolGood.Words.FirstPinyin;
+using EzPinyin;
 using MyNihongo.KanaConverter;
-using MyNihongo.KanaDetector;
 
 namespace Dopamine.Core.Utils
 {
@@ -140,12 +139,12 @@ namespace Dopamine.Core.Utils
             string prefix = string.Empty;
 
             // 判断是否为汉字
-            if (WordsHelper.IsAllChinese(firstElement))
+            if (CharacterUtils.ContainsHan(firstElement))
             {
-                prefix = WordsHelper.GetFirstPinyin(firstElement).ToLower();
+                prefix = PinyinHelper.GetInitial(firstElement).ToLower();
             }
             // 判断是否为日语假名（平假名/片假名）
-            else if (firstElement.IsKana())
+            else if (CharacterUtils.IsKana(firstElement))
             {
                 string romaji = firstElement.ToRomaji();
                 prefix = !string.IsNullOrEmpty(romaji) ? romaji.Substring(0, 1).ToLower() : firstElement.ToLower();

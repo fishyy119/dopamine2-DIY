@@ -271,6 +271,7 @@ namespace Dopamine.ViewModels.FullPlayer.Collection
             {
                 // Get the artists
                 var artistViewModels = new ObservableCollection<ArtistViewModel>(await this.collectionService.GetAllArtistsAsync(artistType));
+                _ = this.searchService.PrepareAsync(artistViewModels.Select(artist => artist.ArtistName));
 
                 // Unbind to improve UI performance
                 this.ClearArtists();
@@ -388,7 +389,7 @@ namespace Dopamine.ViewModels.FullPlayer.Collection
         {
             ArtistViewModel avm = e.Item as ArtistViewModel;
 
-            e.Accepted = Services.Utils.EntityUtils.FilterArtists(avm, this.searchService.SearchText);
+            e.Accepted = Services.Utils.EntityUtils.FilterArtists(avm, this.searchService);
         }
 
         private async Task AddArtistsToNowPlayingAsync(IList<string> artists)
