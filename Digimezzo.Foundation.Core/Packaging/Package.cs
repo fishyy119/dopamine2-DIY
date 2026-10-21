@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Digimezzo.Foundation.Core.Packaging
 {
@@ -6,6 +7,11 @@ namespace Digimezzo.Foundation.Core.Packaging
     {
         private string name { get; set; }
         private Version version { get; set; }
+        private readonly string informationalVersion;
+
+        public string DisplayVersion => string.IsNullOrWhiteSpace(this.informationalVersion)
+            ? this.FormattedVersionNoBuildWithLabel
+            : this.informationalVersion;
 
         public string Name
         {
@@ -79,6 +85,11 @@ namespace Digimezzo.Foundation.Core.Packaging
         {
             get
             {
+                if (this.Version.Revision < 1000 || this.Version.Revision > 4999)
+                {
+                    return this.FormattedVersionNoBuild;
+                }
+
                 string versionType = this.Version.Revision.ToString().Substring(0, 1);
                 string versionTypeNumber = this.Version.Revision.ToString().Substring(1, 3).TrimStart(new Char[] { '0' });
                 string returnValue = string.Empty;
@@ -110,7 +121,7 @@ namespace Digimezzo.Foundation.Core.Packaging
         {
             get
             {
-                return string.Format("{0} {1}", this.name, this.FormattedVersionNoBuildWithLabel);
+                return string.Format("{0} {1}", this.name, this.DisplayVersion);
             }
         }
 
@@ -138,10 +149,18 @@ namespace Digimezzo.Foundation.Core.Packaging
             }
         }
 
-        public Package(string name, Version version)
+        public Package(string name, Version version, string informationalVersion = null)
         {
             this.name = name;
             this.version = version;
+            this.informationalVersion = informationalVersion;
+        }
+
+        public static Package FromAssembly(Assembly assembly, string name = null)
+        {
+            AssemblyName assemblyName = assembly.GetName();
+            string informationalVersion = assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+            return new Package(name ?? assemblyName.Name, assemblyName.Version, informationalVersion);
         }
 
         public bool IsOlder(Package referencePackage)

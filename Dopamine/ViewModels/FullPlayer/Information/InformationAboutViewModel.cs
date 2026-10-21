@@ -8,6 +8,7 @@ using Dopamine.Views.FullPlayer.Information;
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
+using System.Reflection;
 using Prism.Ioc;
 using Dopamine.Core.Extensions;
 
@@ -44,7 +45,7 @@ namespace Dopamine.ViewModels.FullPlayer.Information
         {
             this.container = container;
             this.dialogService = dialogService;
-            this.Package = new Package(ProcessExecutable.Name(), ProcessExecutable.AssemblyVersion());
+            this.Package = Package.FromAssembly(Assembly.GetEntryAssembly());
 
             this.ShowLicenseCommand = new DelegateCommand(() =>
             {

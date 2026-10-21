@@ -45,9 +45,9 @@ namespace Digimezzo.Foundation.Core.Packaging
         private string publishDirectory = ""; // Filled in during Initialize()
         private string publishUpdateSubDirectory = ".update";
 
-        public PackageCreator(string packageName, Version packageVersion)
+        public PackageCreator(Package package)
         {
-            this.package = new Package(packageName, packageVersion);
+            this.package = package;
         }
 
         public async Task ExecuteAsync()
@@ -60,9 +60,6 @@ namespace Digimezzo.Foundation.Core.Packaging
             Console.WriteLine("========");
 
             Console.WriteLine(Environment.NewLine + string.Format("Welcome to the packager for {0}", this.package.Filename));
-            Console.WriteLine(Environment.NewLine + "Press any key to start packaging...");
-
-            Console.ReadKey();
 
             // Clean up the destination directory
             // ----------------------------------
@@ -73,21 +70,20 @@ namespace Digimezzo.Foundation.Core.Packaging
 
             // Create the installable version
             // ------------------------------
-            Task createInstallableVersionTask = this.CreateInstallableVersionAsync();
-            createInstallableVersionTask.Wait();
+            await this.CreateInstallableVersionAsync();
 
             // Create the update package
             // -------------------------
-            Task createUpdatePackageTask = this.CreateUpdatePackageAsync();
-            createUpdatePackageTask.Wait();
+            await this.CreateUpdatePackageAsync();
 
             // Create the portable version
             // ---------------------------
-            Task createPortableVersionTask = this.CreatePortableVersionAsync();
-            createPortableVersionTask.Wait();
+            await this.CreatePortableVersionAsync();
 
             // Do you wish to publish this package?
             // ------------------------------------
+            // Publishing is temporarily disabled.
+            /*
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(Environment.NewLine + Environment.NewLine + "Do you wish to publish this package? [Y/N]");
 
@@ -120,15 +116,10 @@ namespace Digimezzo.Foundation.Core.Packaging
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write(Environment.NewLine + Environment.NewLine + "Package not published");
             }
+            */
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(Environment.NewLine + Environment.NewLine + "Press any key to close this window and go to the package directory");
-
-            Console.ReadKey();
-
-            Process.Start(@"explorer.exe", @"/select, """ + this.packageDirectory + @"""");
-
-            Console.ReadKey();
+            Process.Start("explorer.exe", "\"" + this.packageDirectory + "\"");
         }
 
         private void Initialize()

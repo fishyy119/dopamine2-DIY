@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?define Version="2.0.8.4000" ?>
+<?define Version="!(bind.FileVersion.Dopamine.exe)" ?>
 <?define Manufacturer="Digimezzo" ?>
 <?define Product="Dopamine" ?>
 <?define ProductCab="Dopamine.cab" ?>
@@ -51,7 +51,12 @@
 		<!-- ============== -->
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<!-- Start Menu -->
-			<Directory Id="ProgramMenuFolder"/>
+			<Directory Id="ProgramMenuFolder">
+				<Component Id="STARTMENUCMP" Guid="*">
+					<Shortcut Id="ExeShortcut" Name="Dopamine" Target="[INSTALLFOLDER]Dopamine.exe" WorkingDirectory="INSTALLFOLDER" Icon="$(var.Product).ico" IconIndex="0" />
+					<RegistryValue Root="HKCU" Key="Software\Digimezzo\Dopamine\Installer" Name="StartMenuShortcut" Type="integer" Value="1" KeyPath="yes" />
+				</Component>
+			</Directory>
 			<!-- Program Files -->
 			<Directory Id="ProgramFilesFolder" Name="PFiles">
 				<Directory Id="INSTALLFOLDER" Name="$(var.Product)">
@@ -189,9 +194,7 @@
 					<!-- Application -->
 					<Component Id="MAINCMP" DiskId="1" Guid="9B925874-C592-453A-BCA8-4CF8D8E60511">
 						<!-- Files -->
-						<File Source="Dopamine.exe">
-							<Shortcut Id="ExeShortcut" Directory="ProgramMenuFolder" Name="Dopamine" WorkingDirectory="INSTALLFOLDER" Icon="$(var.Product).ico" IconIndex="0" />
-						</File>
+						<File Source="Dopamine.exe" KeyPath="yes" />
 						<File Source="Dopamine.exe.config" />
 						<File Source="License.txt" />
 						<File Source="CHANGELOG.md" />
@@ -304,6 +307,7 @@
 		<!-- Components to add -->
 		<!-- ================= -->
 		<Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+			<ComponentRef Id="STARTMENUCMP" />
 			<ComponentRef Id="FFMPEGX64CMP" />
 			<ComponentRef Id="FFMPEGX86CMP" />
 			<ComponentRef Id="ICONSCMP" />

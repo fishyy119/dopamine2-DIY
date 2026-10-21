@@ -49,19 +49,13 @@ The `quick_package.py` script can automatically package Dopamine by performing t
    * This tool is written in Python and compiled into a standalone executable using **Nuitka**.
    * The build process is handled by the script `M3U_manager/build.py`.
 
-2. **Update hardcoded version information in Dopamine.**
-
-   * **Four** string values are modified to reflect the new version.
-
-3. **Compile the project using MSBuild.**
+2. **Compile the project using MSBuild.**
 
    * The script contains a hardcoded MSBuild path, which may need to be adjusted manually.
    * MSBuild restores the SDK projects' NuGet packages before compiling.
    * The compilation produces the main application as well as the packaging helper `Packager.exe`.
 
-4. **Package the project using `Dopamine.Packager.exe`.**
+3. **Package the project using `Dopamine.Packager.exe`.**
 
    * **WiX Toolset v3.14** must be installed to support packaging.
    * During packaging, a new terminal window will appear, requiring manual interaction.
-
-5. **Rename the packaged output** so that the filename reflects the custom version number.
