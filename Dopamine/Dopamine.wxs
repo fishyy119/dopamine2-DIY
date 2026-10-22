@@ -213,15 +213,13 @@
 						<File Source="CSCore.dll" />
 						<File Source="CSCore.Ffmpeg.dll" />
 						<File Source="GongSolutions.WPF.DragDrop.dll" />
-						<File Source="Ionic.Zip.dll" />
-						<File Source="NVorbis.dll" />
 						<File Source="SQLite-net.dll" />
 						<File Source="SQLitePCLRaw.batteries_green.dll" />
 						<File Source="SQLitePCLRaw.batteries_v2.dll" />
 						<File Source="SQLitePCLRaw.core.dll" />
 						<File Source="SQLitePCLRaw.provider.e_sqlite3.dll" />
 						<File Source="System.Windows.Interactivity.dll" />
-						<File Source="taglib-sharp.dll" />
+						<File Source="TagLibSharp.dll" />
 						<File Source="WPFFolderBrowser.dll" />
 						<File Source="DryIoc.dll" />
 						<File Source="Newtonsoft.Json.dll" />

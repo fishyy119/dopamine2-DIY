@@ -62,7 +62,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
+    <Reference
+      Include="CSCore, Version=1.2.1.2, Culture=neutral, PublicKeyToken=5a08f2b6f4415dea, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\CSCore.dll</HintPath>
     </Reference>
@@ -70,16 +71,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\CSCore.Ffmpeg.dll</HintPath>
     </Reference>
-    <Reference Include="Digimezzo.Foundation.WPF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference
+      Include="Digimezzo.Foundation.WPF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Digimezzo.Foundation.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="Ionic.Zip">
-      <HintPath>Libraries\Ionic.Zip.dll</HintPath>
-    </Reference>
-    <!-- Keep the same drag/drop binary as Dopamine.Core and the legacy packaged output. -->
-    <Reference Include="GongSolutions.WPF.DragDrop">
-      <HintPath>Libraries\GongSolutions.WPF.DragDrop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -96,16 +91,8 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\taglib-sharp.dll</HintPath>
-    </Reference>
     <Reference Include="Windows">
       <HintPath>C:\Program Files (x86)\Windows Kits\10\UnionMetadata\Windows.winmd</HintPath>
-    </Reference>
-    <Reference Include="WPFFolderBrowser, Version=1.0.2.0, Culture=neutral, PublicKeyToken=6437333e9e99153e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\WPFFolderBrowser.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -668,12 +655,6 @@
     <Content Include="Libraries\CSCore.Ffmpeg.dll" />
     <Content Include="Libraries\Digimezzo.Foundation.Core.dll" />
     <Content Include="Libraries\Digimezzo.Foundation.WPF.dll" />
-    <Content Include="Libraries\GongSolutions.WPF.DragDrop.dll" />
-    <Content Include="Libraries\Ionic.Zip.dll" />
-    <Content Include="Libraries\NVorbis.dll" />
-    <Content Include="Libraries\System.Windows.Interactivity.dll" />
-    <Content Include="Libraries\taglib-sharp.dll" />
-    <Content Include="Libraries\WPFFolderBrowser.dll" />
     <Content Include="License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1290,7 +1271,7 @@
     <PackageReference Include="CommonServiceLocator" Version="2.0.3" />
     <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
     <PackageReference Include="DryIoc.dll" Version="2.12.8" />
-    <PackageReference Include="gong-wpf-dragdrop" Version="1.1.0" ExcludeAssets="compile;runtime" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="1.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Prism.Core" Version="7.0.0.396" />
     <PackageReference Include="Prism.DryIoc" Version="7.0.0.336-pre" />
@@ -1302,5 +1283,7 @@
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.9" />
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.9" />
     <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.9" />
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
+    <PackageReference Include="WPFFolderBrowser" Version="1.0.2" />
   </ItemGroup>
 </Project>
