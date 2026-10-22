@@ -7,16 +7,17 @@ Version numbers retain the original upstream and DIY release labels.
 
 ## [Unreleased]
 
+## [2.0.10+koifish.8] - 2026-10-22
+
 ### Added
 
-- Added full-pinyin search for Chinese text across existing searchable fields
-- Added romaji search for Japanese text, including kanji
-- Added click-to-copy for song titles, artists, and album names in playback information, with a hand cursor on hover
+- Search Chinese text using full pinyin
+- Search Japanese text, including kanji, using romaji
+- Click song titles, artist names, or album names in playback information to copy them
 
 ### Changed
 
-- Search now normalizes character width, hiragana/katakana, and case while preserving substring matching and requiring all search terms to match
-- Replaced ToolGood with EzPinyin for Chinese pinyin conversion and sorting prefixes
+- Search now treats full-width and half-width characters, hiragana and katakana, and uppercase and lowercase letters as equivalent
 
 ## [2.0.10+koifish.7] - 2026-03-29
 
@@ -821,7 +822,8 @@ That is expected, and caused by changes to the installer, see (*). Please don't 
 - Multiple modes: Full, Cover player, Micro player, Nano Player.
 - Now playing screen
 
-[Unreleased]: https://github.com/fishyy119/dopamine2-DIY/compare/2.0.10+koifish.7...HEAD
+[Unreleased]: https://github.com/fishyy119/dopamine2-DIY/compare/2.0.10+koifish.8...HEAD
+[2.0.10+koifish.8]: https://github.com/fishyy119/dopamine2-DIY/compare/2.0.10+koifish.7...2.0.10+koifish.8
 [2.0.10+koifish.7]: https://github.com/fishyy119/dopamine2-DIY/compare/2.0.10+koifish.6...2.0.10+koifish.7
 [2.0.10+koifish.6]: https://github.com/fishyy119/dopamine2-DIY/compare/2.0.10+koifish.5...2.0.10+koifish.6
 [2.0.10+koifish.5]: https://github.com/fishyy119/dopamine2-DIY/compare/2.0.10+koifish.4...2.0.10+koifish.5
