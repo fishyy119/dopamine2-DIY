@@ -84,8 +84,9 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <commonviews:CoverArtControl x:Name="CoverArtControl" DockPanel.Dock="Left" Width="70" Height="70"/>
+                <!-- Keep clicks available for navigation to Now Playing. -->
                 <commonviews:PlaybackInfoControl Height="70" TitleFontWeight="Light" VerticalAlignment="Center" Margin="10,0,0,0"
-                                                 ShowLoveAndRating="True"/>
+                                                 ShowLoveAndRating="True" EnableQuickCopy="False"/>
             </DockPanel>
             <!-- Playback controls -->
             <commonviews:PlaybackControlsWithPlaylistNotification Grid.Column="1" HorizontalAlignment="Center" UseLayoutRounding="True" SnapsToDevicePixels="True"/>

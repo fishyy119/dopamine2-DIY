@@ -1,43 +1,53 @@
 ﻿using Dopamine.Core.Base;
 using System;
+using Digimezzo.Foundation.Core.Logging;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Dopamine.Views.Common
 {
     public partial class PlaybackInfoControl : UserControl
     {
+        public static readonly DependencyProperty EnableQuickCopyProperty =
+            DependencyProperty.Register(nameof(EnableQuickCopy), typeof(bool), typeof(PlaybackInfoControl), new PropertyMetadata(true));
         public static readonly DependencyProperty LoveFontSizeProperty =
             DependencyProperty.Register(nameof(LoveFontSize), typeof(double), typeof(PlaybackInfoControl), new PropertyMetadata(null));
         public static readonly DependencyProperty RatingFontSizeProperty =
            DependencyProperty.Register(nameof(RatingFontSize), typeof(double), typeof(PlaybackInfoControl), new PropertyMetadata(null));
-        public static readonly DependencyProperty TextAlignmentProperty = 
+        public static readonly DependencyProperty TextAlignmentProperty =
             DependencyProperty.Register(nameof(TextAlignment), typeof(TextAlignment), typeof(PlaybackInfoControl), new PropertyMetadata(TextAlignment.Left));
-        public static readonly DependencyProperty TitleFontSizeProperty = 
+        public static readonly DependencyProperty TitleFontSizeProperty =
             DependencyProperty.Register(nameof(TitleFontSize), typeof(double), typeof(PlaybackInfoControl), new PropertyMetadata(Constants.GlobalFontSize));
-        public static readonly DependencyProperty TitleFontWeightProperty = 
+        public static readonly DependencyProperty TitleFontWeightProperty =
             DependencyProperty.Register(nameof(TitleFontWeight), typeof(FontWeight), typeof(PlaybackInfoControl), new PropertyMetadata(FontWeights.Normal));
-        public static readonly DependencyProperty ArtistFontSizeProperty = 
+        public static readonly DependencyProperty ArtistFontSizeProperty =
             DependencyProperty.Register(nameof(ArtistFontSize), typeof(double), typeof(PlaybackInfoControl), new PropertyMetadata(Constants.GlobalFontSize));
-        public static readonly DependencyProperty ArtistFontWeightProperty = 
+        public static readonly DependencyProperty ArtistFontWeightProperty =
             DependencyProperty.Register(nameof(ArtistFontWeight), typeof(FontWeight), typeof(PlaybackInfoControl), new PropertyMetadata(FontWeights.Normal));
-        public static readonly DependencyProperty AlbumFontSizeProperty = 
+        public static readonly DependencyProperty AlbumFontSizeProperty =
             DependencyProperty.Register(nameof(AlbumFontSize), typeof(double), typeof(PlaybackInfoControl), new PropertyMetadata(Constants.GlobalFontSize));
-        public static readonly DependencyProperty AlbumFontWeightProperty = 
+        public static readonly DependencyProperty AlbumFontWeightProperty =
             DependencyProperty.Register(nameof(AlbumFontWeight), typeof(FontWeight), typeof(PlaybackInfoControl), new PropertyMetadata(FontWeights.Normal));
-        public static readonly DependencyProperty TimeFontSizeProperty = 
+        public static readonly DependencyProperty TimeFontSizeProperty =
             DependencyProperty.Register(nameof(TimeFontSize), typeof(double), typeof(PlaybackInfoControl), new PropertyMetadata(Constants.GlobalFontSize));
-        public static readonly DependencyProperty ShowAlbumInfoProperty = 
+        public static readonly DependencyProperty ShowAlbumInfoProperty =
             DependencyProperty.Register(nameof(ShowAlbumInfo), typeof(bool), typeof(PlaybackInfoControl), new PropertyMetadata(false));
         public static readonly DependencyProperty ShowLoveAndRatingProperty =
             DependencyProperty.Register(nameof(ShowLoveAndRating), typeof(bool), typeof(PlaybackInfoControl), new PropertyMetadata(false));
-        public static readonly DependencyProperty IsBottomAlignedProperty = 
+        public static readonly DependencyProperty IsBottomAlignedProperty =
             DependencyProperty.Register(nameof(IsBottomAligned), typeof(bool), typeof(PlaybackInfoControl), new PropertyMetadata(false));
-    
+
         public new object DataContext
         {
             get { return base.DataContext; }
             set { base.DataContext = value; }
+        }
+
+        public bool EnableQuickCopy
+        {
+            get { return (bool)GetValue(EnableQuickCopyProperty); }
+            set { SetValue(EnableQuickCopyProperty, value); }
         }
 
         public double LoveFontSize
@@ -128,10 +138,28 @@ namespace Dopamine.Views.Common
 
             set { SetValue(IsBottomAlignedProperty, value); }
         }
-     
+
         public PlaybackInfoControl()
         {
             InitializeComponent();
+        }
+
+        private void CopyTextToClipboard(object sender, MouseButtonEventArgs e)
+        {
+            if (!this.EnableQuickCopy || !(sender is TextBlock textBlock)) return;
+
+            if (string.IsNullOrWhiteSpace(textBlock.Text)) return;
+
+            e.Handled = true;
+
+            try
+            {
+                Clipboard.SetText(textBlock.Text);
+            }
+            catch (Exception ex)
+            {
+                LogClient.Error("Could not copy playback information to clipboard. Exception: {0}", ex.Message);
+            }
         }
     }
 }
