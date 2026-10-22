@@ -10,32 +10,30 @@
                 <ControlTemplate TargetType="{x:Type ListBoxItem}">
                     <Grid>
                         <Border>
-                            <Border
-                               Background="{TemplateBinding Background}" 
-                               Height="24">
-                                <TextBlock Text="{Binding Name}" 
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Stretch" 
-                                       TextTrimming="CharacterEllipsis"
-                                       Margin="2,0,2,0"
-                                       ToolTip="{Binding ArtistName}"
-                                       Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ScrollContentPresenter}}}"/>
+                            <Border Height="24" Background="{TemplateBinding Background}">
+                                <TextBlock Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ScrollContentPresenter}}}"
+                                           Margin="2,0,2,0"
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Name}"
+                                           TextTrimming="CharacterEllipsis"
+                                           ToolTip="{Binding ArtistName}" />
                             </Border>
                             <Border.Background>
-                                <SolidColorBrush Color="{DynamicResource Color_ItemHovered}" Opacity="0"/>
+                                <SolidColorBrush Opacity="0" Color="{DynamicResource Color_ItemHovered}" />
                             </Border.Background>
                             <Border.Triggers>
                                 <EventTrigger RoutedEvent="MouseEnter">
                                     <BeginStoryboard>
                                         <Storyboard TargetProperty="Background.Opacity">
-                                            <DoubleAnimation To="0.05" Duration="{x:Static base:Constants.MouseEnterDuration}"/>
+                                            <DoubleAnimation To="0.05" Duration="{x:Static base:Constants.MouseEnterDuration}" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
                                 <EventTrigger RoutedEvent="MouseLeave">
                                     <BeginStoryboard>
                                         <Storyboard TargetProperty="Background.Opacity">
-                                            <DoubleAnimation To="0" Duration="{x:Static base:Constants.MouseLeaveDuration}"/>
+                                            <DoubleAnimation To="0" Duration="{x:Static base:Constants.MouseLeaveDuration}" />
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -44,7 +42,7 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{DynamicResource Brush_ItemSelected}"/>
+                            <Setter Property="Background" Value="{DynamicResource Brush_ItemSelected}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -53,7 +51,7 @@
     </Style>
 
     <Style x:Key="MetroListBox" TargetType="{x:Type ListBox}">
-        <Setter Property="ItemContainerStyle" Value="{DynamicResource MetroListBoxItem}"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource MetroListBoxItem}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Background" Value="{DynamicResource Brush_ListBoxBackground}" />
         <Setter Property="BorderThickness" Value="0" />

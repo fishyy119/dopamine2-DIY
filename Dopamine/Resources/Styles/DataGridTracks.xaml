@@ -6,56 +6,67 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Dopamine;component/Resources/Styles/FontStyles.xaml" />
-        <ResourceDictionary Source="/Dopamine;component/Resources/Styles/ScrollBar.xaml"/>
+        <ResourceDictionary Source="/Dopamine;component/Resources/Styles/ScrollBar.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <converters:BooleanToCollapsedConverter x:Key="BooleanToCollapsedConverter" />
     <converters:AddEllipsisConverter x:Key="AddEllipsisConverter" />
 
-    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent"/>
-    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{DynamicResource Color_SoftWhite}"/>
+    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
+    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="{DynamicResource Color_SoftWhite}" />
 
-    <!-- ContextMenu -->
+    <!--  ContextMenu  -->
     <ContextMenu x:Key="DataGridTracksContextMenu">
         <ContextMenu.Resources>
-            <utils:BindingProxy x:Key="ColumnsProxy" Data="{DynamicResource Language_Columns}"/>
-            <utils:BindingProxy x:Key="NewPlaylistProxy" Data="{DynamicResource Language_New_Playlist}"/>
-            <CollectionViewSource x:Key="PlaylistsDataSource" Source="{Binding DataContext.ContextMenuPlaylists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+            <utils:BindingProxy x:Key="ColumnsProxy" Data="{DynamicResource Language_Columns}" />
+            <utils:BindingProxy x:Key="NewPlaylistProxy" Data="{DynamicResource Language_New_Playlist}" />
+            <CollectionViewSource x:Key="PlaylistsDataSource" Source="{Binding DataContext.ContextMenuPlaylists, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
         </ContextMenu.Resources>
-        
-        <MenuItem Header="{Binding Source={StaticResource ColumnsProxy}, Path=Data, Converter={StaticResource AddEllipsisConverter}}" Command="{Binding DataContext.ChooseColumnsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <Separator/>
-        <MenuItem Header="{DynamicResource Language_View_In_Explorer}" InputGestureText="{DynamicResource Language_Ctrl_E}" Command="{Binding ViewInExplorerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <MenuItem Header="{DynamicResource Language_Jump_To_Playing_Song}" InputGestureText="{DynamicResource Language_Ctrl_J}" Command="{Binding JumpToPlayingTrackCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <Separator/>
-        <MenuItem
-            InputGestureText="" 
-            Command="{Binding DataContext.EditTracksCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+
+        <MenuItem Command="{Binding DataContext.ChooseColumnsCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Header="{Binding Source={StaticResource ColumnsProxy}, Path=Data, Converter={StaticResource AddEllipsisConverter}}" />
+        <Separator />
+        <MenuItem Command="{Binding ViewInExplorerCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_View_In_Explorer}"
+                  InputGestureText="{DynamicResource Language_Ctrl_E}" />
+        <MenuItem Command="{Binding JumpToPlayingTrackCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_Jump_To_Playing_Song}"
+                  InputGestureText="{DynamicResource Language_Ctrl_J}" />
+        <Separator />
+        <MenuItem Command="{Binding DataContext.EditTracksCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" InputGestureText="">
             <MenuItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{DynamicResource Language_Edit}"/>
-                    <pc:SyncRing Width="11" Margin="15,0,0,0" VerticalAlignment="Center" Visibility="{Binding DataContext.IsIndexing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="{DynamicResource Language_Edit}" />
+                    <pc:SyncRing Width="11"
+                                 Margin="15,0,0,0"
+                                 VerticalAlignment="Center"
+                                 Visibility="{Binding DataContext.IsIndexing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </MenuItem.Header>
         </MenuItem>
-        <Separator/>
-        <MenuItem Header="{DynamicResource Language_Play_Selected}" InputGestureText="" Command="{Binding DataContext.PlaySelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <MenuItem Header="{DynamicResource Language_Play_Next}" InputGestureText="" Command="{Binding DataContext.PlayNextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <MenuItem Header="{DynamicResource Language_Add_To_Now_Playing}" InputGestureText="" Command="{Binding DataContext.AddTracksToNowPlayingCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <MenuItem Header="{DynamicResource Language_Add_To_Playlist}" DisplayMemberPath="Name">
+        <Separator />
+        <MenuItem Command="{Binding DataContext.PlaySelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_Play_Selected}"
+                  InputGestureText="" />
+        <MenuItem Command="{Binding DataContext.PlayNextCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_Play_Next}"
+                  InputGestureText="" />
+        <MenuItem Command="{Binding DataContext.AddTracksToNowPlayingCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_Add_To_Now_Playing}"
+                  InputGestureText="" />
+        <MenuItem DisplayMemberPath="Name" Header="{DynamicResource Language_Add_To_Playlist}">
             <MenuItem.ItemContainerStyle>
                 <Style TargetType="MenuItem">
                     <Setter Property="Command" Value="{Binding DataContext.AddTracksToPlaylistCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
-                    <Setter Property="CommandParameter" Value="{Binding Name}"/>
+                    <Setter Property="CommandParameter" Value="{Binding Name}" />
                 </Style>
             </MenuItem.ItemContainerStyle>
             <MenuItem.ItemsSource>
                 <CompositeCollection>
-                    <MenuItem Header="{Binding Source={StaticResource NewPlaylistProxy}, Path=Data, Converter={StaticResource AddEllipsisConverter}}"/>
-                    <Separator/>
-                    <CollectionContainer Collection="{Binding Source={StaticResource PlaylistsDataSource}}"/>
+                    <MenuItem Header="{Binding Source={StaticResource NewPlaylistProxy}, Path=Data, Converter={StaticResource AddEllipsisConverter}}" />
+                    <Separator />
+                    <CollectionContainer Collection="{Binding Source={StaticResource PlaylistsDataSource}}" />
                 </CompositeCollection>
             </MenuItem.ItemsSource>
             <MenuItem.ItemsPanel>
@@ -66,17 +77,24 @@
             <MenuItem.Template>
                 <ControlTemplate TargetType="MenuItem">
                     <Grid>
-                        <MenuItem Header="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}" DisplayMemberPath="Name">
+                        <MenuItem DisplayMemberPath="Name" Header="{Binding Header, RelativeSource={RelativeSource TemplatedParent}}">
                             <MenuItem.ItemsSource>
                                 <CompositeCollection>
-                                    <Separator/>
+                                    <Separator />
                                 </CompositeCollection>
                             </MenuItem.ItemsSource>
                         </MenuItem>
-                        <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" Placement="Right" AllowsTransparency="True" PopupAnimation="Fade">
-                            <Border BorderBrush="Transparent" BorderThickness="8,10,5,10" Background="White">
+                        <Popup AllowsTransparency="True"
+                               IsOpen="{TemplateBinding IsSubmenuOpen}"
+                               Placement="Right"
+                               PopupAnimation="Fade">
+                            <Border Background="White"
+                                    BorderBrush="Transparent"
+                                    BorderThickness="8,10,5,10">
                                 <Border.Effect>
-                                    <DropShadowEffect BlurRadius="8" Opacity="0.6" ShadowDepth="0" />
+                                    <DropShadowEffect BlurRadius="8"
+                                                      Opacity="0.6"
+                                                      ShadowDepth="0" />
                                 </Border.Effect>
                                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                                     <ItemsPresenter />
@@ -87,76 +105,94 @@
                 </ControlTemplate>
             </MenuItem.Template>
         </MenuItem>
-        <Separator/>
-        <MenuItem Header="{DynamicResource Language_Search_Online}" ItemsSource="{Binding DataContext.ContextMenuSearchProviders, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" DisplayMemberPath="Name" IsEnabled="{Binding DataContext.HasContextMenuSearchProviders, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+        <Separator />
+        <MenuItem DisplayMemberPath="Name"
+                  Header="{DynamicResource Language_Search_Online}"
+                  IsEnabled="{Binding DataContext.HasContextMenuSearchProviders, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  ItemsSource="{Binding DataContext.ContextMenuSearchProviders, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
             <MenuItem.ItemContainerStyle>
                 <Style TargetType="MenuItem">
                     <Setter Property="Foreground" Value="{DynamicResource Brush_ContextMenuText}" />
-                    <Setter Property="Command" Value="{Binding DataContext.SearchOnlineCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-                    <Setter Property="CommandParameter" Value="{Binding Id}"/>
+                    <Setter Property="Command" Value="{Binding DataContext.SearchOnlineCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
+                    <Setter Property="CommandParameter" Value="{Binding Id}" />
                 </Style>
             </MenuItem.ItemContainerStyle>
         </MenuItem>
-        <Separator/>
-        <MenuItem 
-            InputGestureText="{DynamicResource Language_Key_Del}" 
-            Command="{Binding DataContext.RemoveSelectedTracksCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+        <Separator />
+        <MenuItem Command="{Binding DataContext.RemoveSelectedTracksCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" InputGestureText="{DynamicResource Language_Key_Del}">
             <MenuItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{DynamicResource Language_Remove}"/>
-                    <pc:SyncRing Width="11" Margin="15,0,0,0" VerticalAlignment="Center" Visibility="{Binding DataContext.IsIndexing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="{DynamicResource Language_Remove}" />
+                    <pc:SyncRing Width="11"
+                                 Margin="15,0,0,0"
+                                 VerticalAlignment="Center"
+                                 Visibility="{Binding DataContext.IsIndexing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </MenuItem.Header>
         </MenuItem>
         <MenuItem>
             <MenuItem.Command>
-                <Binding Path="DataContext.RemoveSelectedTracksFromDiskCommand" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}"/>
+                <Binding Path="DataContext.RemoveSelectedTracksFromDiskCommand" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" />
             </MenuItem.Command>
             <MenuItem.Visibility>
-                <Binding Path="DataContext.ShowRemoveFromDisk" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type UserControl}}" Converter="{StaticResource BooleanToCollapsedConverter}" UpdateSourceTrigger="PropertyChanged" Mode="OneWay"/>
+                <Binding Converter="{StaticResource BooleanToCollapsedConverter}"
+                         Mode="OneWay"
+                         Path="DataContext.ShowRemoveFromDisk"
+                         RelativeSource="{RelativeSource FindAncestor,
+                                                         AncestorType={x:Type UserControl}}"
+                         UpdateSourceTrigger="PropertyChanged" />
             </MenuItem.Visibility>
             <MenuItem.Header>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{DynamicResource Language_Remove_From_Disk}"/>
-                    <pc:SyncRing Width="11" Margin="15,0,0,0" VerticalAlignment="Center" Visibility="{Binding DataContext.IsIndexing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <TextBlock Text="{DynamicResource Language_Remove_From_Disk}" />
+                    <pc:SyncRing Width="11"
+                                 Margin="15,0,0,0"
+                                 VerticalAlignment="Center"
+                                 Visibility="{Binding DataContext.IsIndexing, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 </StackPanel>
             </MenuItem.Header>
         </MenuItem>
-        <Separator/>
-        <MenuItem Header="{DynamicResource Language_Add_To_Blacklist}" InputGestureText="" Command="{Binding DataContext.AddToBlacklistCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
-        <Separator/>
-        <MenuItem Header="{DynamicResource Language_Information}" InputGestureText="" Command="{Binding DataContext.ShowSelectedTrackInformationCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"/>
+        <Separator />
+        <MenuItem Command="{Binding DataContext.AddToBlacklistCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_Add_To_Blacklist}"
+                  InputGestureText="" />
+        <Separator />
+        <MenuItem Command="{Binding DataContext.ShowSelectedTrackInformationCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                  Header="{DynamicResource Language_Information}"
+                  InputGestureText="" />
     </ContextMenu>
 
-    <!-- DataGrid -->
+    <!--  DataGrid  -->
     <Style TargetType="{x:Type pc:DataGridEx}">
         <Setter Property="RowBackground" Value="Transparent" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="HeadersVisibility" Value="Column"/>
-        <Setter Property="CanUserAddRows" Value="False"/>
-        <Setter Property="CanUserDeleteRows" Value="False"/>
-        <Setter Property="CanUserReorderColumns" Value="False"/>
-        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="HeadersVisibility" Value="Column" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="CanUserReorderColumns" Value="False" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="Transparent"/>
-        <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="HorizontalGridLinesBrush" Value="Transparent" />
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type pc:DataGridEx}">
-                    <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}" Template="{StaticResource DataGridScrollViewerTemplate}">
-                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <ScrollViewer Padding="{TemplateBinding Padding}"
+                                  Focusable="false"
+                                  Template="{StaticResource DataGridScrollViewerTemplate}">
+                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </ScrollViewer>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
-    <!-- DataGridRow -->
+    <!--  DataGridRow  -->
     <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}">
-        <Setter Property="ContextMenu" Value="{StaticResource DataGridTracksContextMenu}"/>
+        <Setter Property="ContextMenu" Value="{StaticResource DataGridTracksContextMenu}" />
         <Setter Property="BorderThickness" Value="0,1,0,0" />
         <Setter Property="BorderBrush" Value="{DynamicResource Brush_ItemSeparator}" />
         <Setter Property="Height" Value="32" />
@@ -165,22 +201,24 @@
                 <Setter Property="Background" Value="{DynamicResource Brush_ItemHovered}" />
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{DynamicResource Brush_ItemSelected}"/>
+                <Setter Property="Background" Value="{DynamicResource Brush_ItemSelected}" />
             </Trigger>
-            <Trigger Property="IsSelected" Value="False">
-            </Trigger>
+            <Trigger Property="IsSelected" Value="False" />
         </Style.Triggers>
     </Style>
 
-    <!-- DataGridCell -->
+    <!--  DataGridCell  -->
     <Style TargetType="{x:Type DataGridCell}">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
-                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-                        <ContentPresenter Margin="10,0,10,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    <Border Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter Margin="10,0,10,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -188,9 +226,9 @@
     </Style>
 
     <Style x:Key="DataGridCellPrimaryWithEllipsis" TargetType="{x:Type DataGridCell}">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -199,11 +237,15 @@
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
                                     <Border HorizontalAlignment="Stretch" Background="#00000000">
-                                        <TextBlock 
-                                            VerticalAlignment="Center"
-                                            Margin="10,0,10,0" Background="Transparent" TextTrimming="CharacterEllipsis" 
-                                            Height="auto" Width="auto" Text="{Binding Text}" ToolTip="{Binding Text}"
-                                            Foreground="{DynamicResource Brush_PrimaryText}"/>
+                                        <TextBlock Width="auto"
+                                                   Height="auto"
+                                                   Margin="10,0,10,0"
+                                                   VerticalAlignment="Center"
+                                                   Background="Transparent"
+                                                   Foreground="{DynamicResource Brush_PrimaryText}"
+                                                   Text="{Binding Text}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding Text}" />
                                     </Border>
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
@@ -215,9 +257,9 @@
     </Style>
 
     <Style x:Key="DataGridCellSecondaryWithEllipsis" TargetType="{x:Type DataGridCell}">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="VerticalAlignment" Value="Stretch"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -226,11 +268,15 @@
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
                                     <Border HorizontalAlignment="Stretch" Background="#00000000">
-                                        <TextBlock 
-                                            VerticalAlignment="Center"
-                                            Margin="10,0,10,0" Background="Transparent" TextTrimming="CharacterEllipsis" 
-                                            Height="auto" Width="auto" Text="{Binding Text}" ToolTip="{Binding Text}"
-                                            Foreground="{DynamicResource Brush_SecondaryText}"/>
+                                        <TextBlock Width="auto"
+                                                   Height="auto"
+                                                   Margin="10,0,10,0"
+                                                   VerticalAlignment="Center"
+                                                   Background="Transparent"
+                                                   Foreground="{DynamicResource Brush_SecondaryText}"
+                                                   Text="{Binding Text}"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding Text}" />
                                     </Border>
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
@@ -241,36 +287,34 @@
         </Setter>
     </Style>
 
-    <!-- DataGridColumnHeader -->
+    <!--  DataGridColumnHeader  -->
     <Style TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{DynamicResource Brush_SecondaryText}"/>
-        <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Margin" Value="10,0,10,15"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource Brush_SecondaryText}" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="Margin" Value="10,0,10,15" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                     <StackPanel Orientation="Horizontal">
-                        <ContentPresenter/>
+                        <ContentPresenter />
                         <Grid Margin="5,5,0,0">
-                            <TextBlock 
-                                x:Name="ArrowUp" 
-                                Text="&#xE010;"
-                                Style="{StaticResource SegoeAssets}"
-                                HorizontalAlignment="Center" 
-                                VerticalAlignment="Center" 
-                                Foreground="{TemplateBinding Foreground}" 
-                                FontSize="12" 
-                                Visibility="Hidden"/>
-                            <TextBlock 
-                                x:Name="ArrowDown" 
-                                Text="&#xE011;" 
-                                Style="{StaticResource SegoeAssets}"
-                                HorizontalAlignment="Center" 
-                                VerticalAlignment="Center" 
-                                Foreground="{TemplateBinding Foreground}" 
-                                FontSize="12" 
-                                Visibility="Hidden"/>
+                            <TextBlock x:Name="ArrowUp"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Style="{StaticResource SegoeAssets}"
+                                       Text="&#xE010;"
+                                       Visibility="Hidden" />
+                            <TextBlock x:Name="ArrowDown"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="12"
+                                       Foreground="{TemplateBinding Foreground}"
+                                       Style="{StaticResource SegoeAssets}"
+                                       Text="&#xE011;"
+                                       Visibility="Hidden" />
                         </Grid>
                     </StackPanel>
                     <ControlTemplate.Triggers>
@@ -279,12 +323,12 @@
                             <Setter TargetName="ArrowDown" Property="Visibility" Value="Hidden" />
                         </Trigger>
                         <Trigger Property="SortDirection" Value="Ascending">
-                            <Setter Property="Foreground" Value="{DynamicResource Brush_Accent}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource Brush_Accent}" />
                             <Setter TargetName="ArrowUp" Property="Visibility" Value="Visible" />
                             <Setter TargetName="ArrowDown" Property="Visibility" Value="Hidden" />
                         </Trigger>
                         <Trigger Property="SortDirection" Value="Descending">
-                            <Setter Property="Foreground" Value="{DynamicResource Brush_Accent}"/>
+                            <Setter Property="Foreground" Value="{DynamicResource Brush_Accent}" />
                             <Setter TargetName="ArrowUp" Property="Visibility" Value="Hidden" />
                             <Setter TargetName="ArrowDown" Property="Visibility" Value="Visible" />
                         </Trigger>

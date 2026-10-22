@@ -4,35 +4,43 @@
                     xmlns:fwc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF">
 
     <Style x:Key="{x:Type controls:SplitViewRadioButton}" TargetType="{x:Type controls:SplitViewRadioButton}">
-        <Setter Property="Height" Value="48"/>
+        <Setter Property="Height" Value="48" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:SplitViewRadioButton}">
                     <Grid Background="#00000000">
-                        <Border x:Name="SelectionBorder" Panel.ZIndex="0"/>
+                        <Border x:Name="SelectionBorder" Panel.ZIndex="0" />
                         <DockPanel>
-                            <Border 
-                                x:Name="SelectionIndicator"
-                                DockPanel.Dock="Left" Width="2" 
-                                Background="{DynamicResource Brush_Accent}"
-                                Visibility="Hidden"/>
-                            <StackPanel Orientation="Horizontal" Panel.ZIndex="1">
+                            <Border x:Name="SelectionIndicator"
+                                    Width="2"
+                                    Background="{DynamicResource Brush_Accent}"
+                                    DockPanel.Dock="Left"
+                                    Visibility="Hidden" />
+                            <StackPanel Panel.ZIndex="1" Orientation="Horizontal">
                                 <Border Margin="16,0,0,0" VerticalAlignment="Center">
-                                    <fwc:SegoeIcon x:Name="MyIcon" Text="{TemplateBinding Icon}" Margin="0,2,0,0"
-                                                 Foreground="{DynamicResource Brush_PrimaryText}"
-                                                 FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <fwc:SegoeIcon x:Name="MyIcon"
+                                                   Margin="0,2,0,0"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="18"
+                                                   Foreground="{DynamicResource Brush_PrimaryText}"
+                                                   Text="{TemplateBinding Icon}" />
                                 </Border>
-                                <Label Padding="0" x:Name="MyContent" Margin="16,0,0,0" 
-                                   FontSize="13" Content="{TemplateBinding Content}" 
-                                   Foreground="{DynamicResource Brush_SecondaryText}" VerticalAlignment="Center"/>
+                                <Label x:Name="MyContent"
+                                       Margin="16,0,0,0"
+                                       Padding="0"
+                                       VerticalAlignment="Center"
+                                       Content="{TemplateBinding Content}"
+                                       FontSize="13"
+                                       Foreground="{DynamicResource Brush_SecondaryText}" />
                             </StackPanel>
                         </DockPanel>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="controls:SplitViewRadioButton.IsChecked" Value="True">
-                            <Setter TargetName="SelectionIndicator" Property="Visibility" Value="Visible"/>
-                            <Setter TargetName="MyContent" Property="Foreground" Value="{DynamicResource Brush_PrimaryText}"/>
-                            <Setter TargetName="SelectionBorder" Property="Background" Value="{DynamicResource Brush_ItemSelected}"/>
+                            <Setter TargetName="SelectionIndicator" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="MyContent" Property="Foreground" Value="{DynamicResource Brush_PrimaryText}" />
+                            <Setter TargetName="SelectionBorder" Property="Background" Value="{DynamicResource Brush_ItemSelected}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

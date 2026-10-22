@@ -1,21 +1,23 @@
 ﻿<dc:Windows10BorderlessWindow x:Class="Dopamine.Views.MiniPlayer.MiniPlayerPlaylist"
                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:commonviews="clr-namespace:Dopamine.Views.Common"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                               xmlns:dc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF"
                               xmlns:enums="clr-namespace:Dopamine.Core.Enums;assembly=Dopamine.Core"
-                              xmlns:commonviews="clr-namespace:Dopamine.Views.Common"
-                              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
                               xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                              mc:Ignorable="d"
-                              Title="Playlist" Height="300" Width="300"
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+                              Title="Playlist"
+                              Width="300"
+                              Height="300"
+                              prismMvvm:ViewModelLocator.AutoWireViewModel="True"
                               IsMovable="False"
-                              ShowWindowControls="False"
-                              ShowInTaskbar="False"
-                              ResizeMode="NoResize"
                               IsVisibleChanged="Windows10BorderlessWindow_IsVisibleChanged"
-                              prismMvvm:ViewModelLocator.AutoWireViewModel="True">
+                              ResizeMode="NoResize"
+                              ShowInTaskbar="False"
+                              ShowWindowControls="False"
+                              mc:Ignorable="d">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -23,16 +25,23 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <!-- ShowInTaskbar="False" and the fact that this window has the main window as a parent, assure that this window is not displayed in the Alt-Tab menu. -->
+    <!--  ShowInTaskbar="False" and the fact that this window has the main window as a parent, assure that this window is not displayed in the Alt-Tab menu.  -->
     <Border x:Name="WindowBorder" BorderBrush="{DynamicResource Brush_Accent}">
         <Grid>
-            <Border x:Name="PlaylistBackground" Background="{DynamicResource Brush_MiniPlayerPlaylistBackground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <Border x:Name="PlaylistBackground"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="{DynamicResource Brush_MiniPlayerPlaylistBackground}" />
             <dc:Pivot Margin="10,20,10,20"
-                      Panel.ZIndex="1" 
-                      SelectedIndex="{Binding SelectedNowPlayingPage,Converter={StaticResource EnumConverter},ConverterParameter={x:Type enums:NowPlayingPage}}" HeaderVisibility="Collapsed" FeatheringRadius="24" AnimationType="SlideHorizontal" SlideFadeIn="True">
+                      Panel.ZIndex="1"
+                      AnimationType="SlideHorizontal"
+                      FeatheringRadius="24"
+                      HeaderVisibility="Collapsed"
+                      SelectedIndex="{Binding SelectedNowPlayingPage, Converter={StaticResource EnumConverter}, ConverterParameter={x:Type enums:NowPlayingPage}}"
+                      SlideFadeIn="True">
                 <dc:PivotItem>
-                    <!-- Displayed when no tracks are queued -->
-                    <commonviews:NothingPlayingControl/>
+                    <!--  Displayed when no tracks are queued  -->
+                    <commonviews:NothingPlayingControl />
                 </dc:PivotItem>
                 <dc:PivotItem>
                     <Grid x:Name="NowPlayingControlParent" />

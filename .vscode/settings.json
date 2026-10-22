@@ -9,6 +9,13 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[xaml]": {
+    "editor.defaultFormatter": "dabbinavo.xamlstyler",
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false
+  },
   "python.analysis.typeCheckingMode": "strict",
   "dotnet.defaultSolution": "Dopamine.sln"
 }

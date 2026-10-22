@@ -8,14 +8,14 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="{x:Type controls:SearchBox}" TargetType="{x:Type controls:SearchBox}">
-        <Setter Property="UseLayoutRounding" Value="True"/>
-        <Setter Property="SelectionBrush" Value="{DynamicResource Brush_Accent}"/>
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="SelectionBrush" Value="{DynamicResource Brush_Accent}" />
         <Setter Property="ContextMenu">
             <Setter.Value>
                 <ContextMenu>
-                    <MenuItem Command="ApplicationCommands.Cut"/>
-                    <MenuItem Command="ApplicationCommands.Copy"/>
-                    <MenuItem Command="ApplicationCommands.Paste"/>
+                    <MenuItem Command="ApplicationCommands.Cut" />
+                    <MenuItem Command="ApplicationCommands.Copy" />
+                    <MenuItem Command="ApplicationCommands.Paste" />
                 </ContextMenu>
             </Setter.Value>
         </Setter>
@@ -23,18 +23,22 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:SearchBox}">
                     <DockPanel>
-                        <Border x:Name="PART_SearchBorder" DockPanel.Dock="Right" Margin="0,1,0,0" 
-                                Width="28" Height="28" CornerRadius="14,0,14,14" 
-                                HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Border x:Name="PART_SearchBorder"
+                                Width="28"
+                                Height="28"
+                                Margin="0,1,0,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                CornerRadius="14,0,14,14"
+                                DockPanel.Dock="Right">
                             <Grid>
-                                <fwc:SegoeIcon
-                                    x:Name="PART_SearchIconGlass" 
-                                    Text="&#xE721;"
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" 
-                                    Foreground="{DynamicResource Brush_SecondaryText}"
-                                    FontSize="16"
-                                    Opacity="1">
+                                <fwc:SegoeIcon x:Name="PART_SearchIconGlass"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="16"
+                                               Foreground="{DynamicResource Brush_SecondaryText}"
+                                               Opacity="1"
+                                               Text="&#xE721;">
                                     <fwc:SegoeIcon.Style>
                                         <Style>
                                             <Style.Triggers>
@@ -42,16 +46,24 @@
                                                     <DataTrigger.EnterActions>
                                                         <BeginStoryboard>
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="1" Duration="0:0:0.25"/>
-                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.25" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.25" />
                                                             </Storyboard>
                                                         </BeginStoryboard>
                                                     </DataTrigger.EnterActions>
                                                     <DataTrigger.ExitActions>
                                                         <BeginStoryboard>
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="16" Duration="0:0:0.25"/>
-                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                                                 To="16"
+                                                                                 Duration="0:0:0.25" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.25" />
                                                             </Storyboard>
                                                         </BeginStoryboard>
                                                     </DataTrigger.ExitActions>
@@ -60,14 +72,13 @@
                                         </Style>
                                     </fwc:SegoeIcon.Style>
                                 </fwc:SegoeIcon>
-                                <fwc:SegoeIcon
-                                    x:Name="PART_SearchIconCross" 
-                                    Text="&#xE894;"
-                                    HorizontalAlignment="Center" 
-                                    VerticalAlignment="Center" 
-                                    Foreground="{DynamicResource Brush_PrimaryText}"
-                                    FontSize="1"
-                                    Opacity="0">
+                                <fwc:SegoeIcon x:Name="PART_SearchIconCross"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="1"
+                                               Foreground="{DynamicResource Brush_PrimaryText}"
+                                               Opacity="0"
+                                               Text="&#xE894;">
                                     <fwc:SegoeIcon.Style>
                                         <Style>
                                             <Style.Triggers>
@@ -75,16 +86,24 @@
                                                     <DataTrigger.EnterActions>
                                                         <BeginStoryboard>
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="12" Duration="0:0:0.25"/>
-                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.25"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                                                 To="12"
+                                                                                 Duration="0:0:0.25" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.25" />
                                                             </Storyboard>
                                                         </BeginStoryboard>
                                                     </DataTrigger.EnterActions>
                                                     <DataTrigger.ExitActions>
                                                         <BeginStoryboard>
                                                             <Storyboard>
-                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="1" Duration="0:0:0.25"/>
-                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.25"/>
+                                                                <DoubleAnimation Storyboard.TargetProperty="FontSize"
+                                                                                 To="1"
+                                                                                 Duration="0:0:0.25" />
+                                                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                                                                 To="0"
+                                                                                 Duration="0:0:0.25" />
                                                             </Storyboard>
                                                         </BeginStoryboard>
                                                     </DataTrigger.ExitActions>
@@ -95,8 +114,11 @@
                                 </fwc:SegoeIcon>
                             </Grid>
                         </Border>
-                        <ScrollViewer x:Name="PART_ContentHost" Panel.ZIndex="1" VerticalAlignment="Center" Margin="5,0,5,0"
-                                      Foreground="{Binding Foreground,RelativeSource={RelativeSource TemplatedParent}}"/>
+                        <ScrollViewer x:Name="PART_ContentHost"
+                                      Margin="5,0,5,0"
+                                      VerticalAlignment="Center"
+                                      Panel.ZIndex="1"
+                                      Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
                     </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
