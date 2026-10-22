@@ -1,21 +1,21 @@
 ﻿<Window x:Class="Dopamine.Views.Common.TrayControls"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:base="clr-namespace:Dopamine.Core.Base;assembly=Dopamine.Core"
+        xmlns:commonviews="clr-namespace:Dopamine.Views.Common"
+        xmlns:cp="clr-namespace:Dopamine.Core.Prism;assembly=Dopamine.Core"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="TrayControls"
-        xmlns:base="clr-namespace:Dopamine.Core.Base;assembly=Dopamine.Core"
-        xmlns:cp="clr-namespace:Dopamine.Core.Prism;assembly=Dopamine.Core" 
-        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
-        xmlns:commonviews="clr-namespace:Dopamine.Views.Common"
         xmlns:pv="clr-namespace:Dopamine.Views"
-        Height="{x:Static base:Constants.TrayControlsHeight}" 
-        Width="{x:Static base:Constants.TrayControlsWidth}" 
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="TrayControls"
+        Width="{x:Static base:Constants.TrayControlsWidth}"
+        Height="{x:Static base:Constants.TrayControlsHeight}"
+        Background="Transparent"
         Deactivated="Window_Deactivated"
-        WindowStyle="None"
         ShowInTaskbar="False"
-        Background="Transparent">
+        WindowStyle="None"
+        mc:Ignorable="d">
 
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -26,28 +26,56 @@
                                         GlassFrameThickness="0.1"
                                         NonClientFrameEdges="None"
                                         ResizeBorderThickness="0"
-                                        UseAeroCaptionButtons="False"/>
+                                        UseAeroCaptionButtons="False" />
                 </Setter.Value>
             </Setter>
         </Style>
     </Window.Style>
 
     <Grid>
-        <Border x:Name="WindowBackground" Panel.ZIndex="0" BorderThickness="0" Background="{DynamicResource Brush_WindowHeaderBackground}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        <Border x:Name="WindowBackground"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Panel.ZIndex="0"
+                Background="{DynamicResource Brush_WindowHeaderBackground}"
+                BorderThickness="0" />
         <DockPanel Panel.ZIndex="1">
-            <!-- Playback information -->
-            <DockPanel x:Name="PlaybackInfoPanel" DockPanel.Dock="Top" HorizontalAlignment="Left" Height="60" Width="260" Margin="10,10,10,15">
-                <commonviews:CoverArtControl DockPanel.Dock="Left" Width="60" Height="60"/>
-                <commonviews:PlaybackInfoControl Height="60" Margin="10,0,0,0" TitleFontSize="22" TitleFontWeight="Light" VerticalAlignment="Bottom"/>
+            <!--  Playback information  -->
+            <DockPanel x:Name="PlaybackInfoPanel"
+                       Width="260"
+                       Height="60"
+                       Margin="10,10,10,15"
+                       HorizontalAlignment="Left"
+                       DockPanel.Dock="Top">
+                <commonviews:CoverArtControl Width="60"
+                                             Height="60"
+                                             DockPanel.Dock="Left" />
+                <commonviews:PlaybackInfoControl Height="60"
+                                                 Margin="10,0,0,0"
+                                                 VerticalAlignment="Bottom"
+                                                 TitleFontSize="22"
+                                                 TitleFontWeight="Light" />
             </DockPanel>
             <StackPanel VerticalAlignment="Bottom">
-                <!-- Volume control -->
-                <commonviews:HorizontalVolumeControls HorizontalAlignment="Left" Margin="51,0,0,20" SliderLength="120"/>
-                <!-- Progress control -->
-                <commonviews:ProgressControlsWithTime HorizontalAlignment="Stretch" Margin="19,0,0,20" SliderLength="120"/>
-                <!-- Playback controls -->
-                <pv:PlaybackControls UseLayoutRounding="True" SnapsToDevicePixels="True" HorizontalAlignment="Left" Margin="48,0,0,20"/>
-                <Button HorizontalAlignment="Right" Margin="0,0,10,10" Content="{DynamicResource Language_Show_Dopamine}" Style="{StaticResource TextButton}" Foreground="{DynamicResource Brush_Accent}" Command="{x:Static cp:ApplicationCommands.ShowMainWindowCommand}"/>
+                <!--  Volume control  -->
+                <commonviews:HorizontalVolumeControls Margin="51,0,0,20"
+                                                      HorizontalAlignment="Left"
+                                                      SliderLength="120" />
+                <!--  Progress control  -->
+                <commonviews:ProgressControlsWithTime Margin="19,0,0,20"
+                                                      HorizontalAlignment="Stretch"
+                                                      SliderLength="120" />
+                <!--  Playback controls  -->
+                <pv:PlaybackControls Margin="48,0,0,20"
+                                     HorizontalAlignment="Left"
+                                     SnapsToDevicePixels="True"
+                                     UseLayoutRounding="True" />
+                <Button Margin="0,0,10,10"
+                        HorizontalAlignment="Right"
+                        Command="{x:Static cp:ApplicationCommands.ShowMainWindowCommand}"
+                        Content="{DynamicResource Language_Show_Dopamine}"
+                        Foreground="{DynamicResource Brush_Accent}"
+                        Style="{StaticResource TextButton}" />
             </StackPanel>
         </DockPanel>
     </Grid>

@@ -1,24 +1,60 @@
 ﻿<UserControl x:Class="Dopamine.Views.Common.AppearanceTheme"
-             x:Name="AppearanceThemeControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             prismMvvm:ViewModelLocator.AutoWireViewModel="True">
+             x:Name="AppearanceThemeControl"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
 
     <StackPanel>
-        <TextBlock Text="{DynamicResource Language_Choose_Theme}" Foreground="{DynamicResource Brush_PrimaryText}"/>
-        <dc:Windows10ToggleSwitch x:Name="CheckBoxTheme" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="12" OnLabel="{DynamicResource Language_Yes}" OffLabel="{DynamicResource Language_No}" Foreground="{DynamicResource Brush_PrimaryText}" Accent="{DynamicResource Brush_Accent}" IsChecked="{Binding CheckBoxThemeChecked}"/>
-        <TextBlock Margin="0,20,0,0" Text="{DynamicResource Language_Follow_Windows_Color}" Foreground="{DynamicResource Brush_PrimaryText}"/>
-        <dc:Windows10ToggleSwitch x:Name="CheckBoxWindowsColor" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="12" OnLabel="{DynamicResource Language_Yes}" OffLabel="{DynamicResource Language_No}" Foreground="{DynamicResource Brush_PrimaryText}" Accent="{DynamicResource Brush_Accent}" IsChecked="{Binding CheckBoxWindowsColorChecked}"/>
-        <StackPanel Visibility="{Binding ShowFollowAlbumCoverColor, ElementName=AppearanceThemeControl,Converter={StaticResource BooleanToCollapsedConverter}}">
-            <TextBlock Margin="0,20,0,0" Text="{DynamicResource Language_Follow_Album_Cover_Color}" Foreground="{DynamicResource Brush_PrimaryText}"/>
-            <dc:Windows10ToggleSwitch x:Name="CheckBoxAlbumCoverColor" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="12" OnLabel="{DynamicResource Language_Yes}" OffLabel="{DynamicResource Language_No}" Foreground="{DynamicResource Brush_PrimaryText}" Accent="{DynamicResource Brush_Accent}" IsChecked="{Binding CheckBoxAlbumCoverColorChecked}"/>
+        <TextBlock Foreground="{DynamicResource Brush_PrimaryText}" Text="{DynamicResource Language_Choose_Theme}" />
+        <dc:Windows10ToggleSwitch x:Name="CheckBoxTheme"
+                                  Margin="0,10,0,0"
+                                  HorizontalAlignment="Left"
+                                  Accent="{DynamicResource Brush_Accent}"
+                                  FontSize="12"
+                                  Foreground="{DynamicResource Brush_PrimaryText}"
+                                  IsChecked="{Binding CheckBoxThemeChecked}"
+                                  OffLabel="{DynamicResource Language_No}"
+                                  OnLabel="{DynamicResource Language_Yes}" />
+        <TextBlock Margin="0,20,0,0"
+                   Foreground="{DynamicResource Brush_PrimaryText}"
+                   Text="{DynamicResource Language_Follow_Windows_Color}" />
+        <dc:Windows10ToggleSwitch x:Name="CheckBoxWindowsColor"
+                                  Margin="0,10,0,0"
+                                  HorizontalAlignment="Left"
+                                  Accent="{DynamicResource Brush_Accent}"
+                                  FontSize="12"
+                                  Foreground="{DynamicResource Brush_PrimaryText}"
+                                  IsChecked="{Binding CheckBoxWindowsColorChecked}"
+                                  OffLabel="{DynamicResource Language_No}"
+                                  OnLabel="{DynamicResource Language_Yes}" />
+        <StackPanel Visibility="{Binding ShowFollowAlbumCoverColor, ElementName=AppearanceThemeControl, Converter={StaticResource BooleanToCollapsedConverter}}">
+            <TextBlock Margin="0,20,0,0"
+                       Foreground="{DynamicResource Brush_PrimaryText}"
+                       Text="{DynamicResource Language_Follow_Album_Cover_Color}" />
+            <dc:Windows10ToggleSwitch x:Name="CheckBoxAlbumCoverColor"
+                                      Margin="0,10,0,0"
+                                      HorizontalAlignment="Left"
+                                      Accent="{DynamicResource Brush_Accent}"
+                                      FontSize="12"
+                                      Foreground="{DynamicResource Brush_PrimaryText}"
+                                      IsChecked="{Binding CheckBoxAlbumCoverColorChecked}"
+                                      OffLabel="{DynamicResource Language_No}"
+                                      OnLabel="{DynamicResource Language_Yes}" />
         </StackPanel>
-        <ListBox Margin="0,20,0,0" IsHitTestVisible="{Binding CanChooseColor}" HorizontalAlignment="Stretch" Style="{StaticResource ColorSchemeButtons}" Name="ListBoxColorSchemes" Background="Transparent" ItemsSource="{Binding Path=ColorSchemes}" SelectedItem="{Binding SelectedColorScheme,Mode=TwoWay}"/>
+        <ListBox Name="ListBoxColorSchemes"
+                 Margin="0,20,0,0"
+                 HorizontalAlignment="Stretch"
+                 Background="Transparent"
+                 IsHitTestVisible="{Binding CanChooseColor}"
+                 ItemsSource="{Binding Path=ColorSchemes}"
+                 SelectedItem="{Binding SelectedColorScheme, Mode=TwoWay}"
+                 Style="{StaticResource ColorSchemeButtons}" />
     </StackPanel>
 </UserControl>

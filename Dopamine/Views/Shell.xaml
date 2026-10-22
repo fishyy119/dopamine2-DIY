@@ -1,41 +1,41 @@
 ﻿<dc:Windows10BorderlessWindow x:Class="Dopamine.Views.Shell"
                               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                              xmlns:prism="http://www.codeplex.com/prism"
-                              xmlns:dc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF"
                               xmlns:base="clr-namespace:Dopamine.Core.Base;assembly=Dopamine.Core"
-                              xmlns:pc="clr-namespace:Dopamine.Controls"
                               xmlns:cp="clr-namespace:Dopamine.Core.Prism;assembly=Dopamine.Core"
-                              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+                              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                              xmlns:dc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF"
                               xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                              mc:Ignorable="d"
-                              Title="{Binding TaskbarService.Description}" 
-                              TitleBarHeight="48"
-                              Width="950" 
-                              Height="600" 
+                              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                              xmlns:pc="clr-namespace:Dopamine.Controls"
+                              xmlns:prism="http://www.codeplex.com/prism"
+                              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
+                              Title="{Binding TaskbarService.Description}"
+                              Width="950"
+                              Height="600"
                               MinWidth="{x:Static base:Constants.MinShellWidth}"
-                              MinHeight="{x:Static base:Constants.MinShellHeight}" 
-                              OverlayBackground="{DynamicResource Brush_DimBackground}"
-                              IsOverlayVisible="{Binding Path=IsOverlayVisible}"
-                              Background="Transparent"
+                              MinHeight="{x:Static base:Constants.MinShellHeight}"
                               prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+                              ApplyDefaultButtonColors="False"
+                              Background="Transparent"
+                              Closed="Window_Closed"
                               Closing="Window_Closing"
                               Deactivated="Window_Deactivated"
+                              IsOverlayVisible="{Binding Path=IsOverlayVisible}"
+                              KeyDown="Window_KeyDown"
                               Loaded="Window_Loaded"
-                              Closed="Window_Closed"
-                              Restored="Window_Restored"
                               LocationChanged="Window_LocationChanged"
+                              MouseDown="Window_MouseDown"
                               MouseUp="Window_MouseUp"
+                              OverlayBackground="{DynamicResource Brush_DimBackground}"
+                              PreviewKeyDown="Window_PreviewKeyDown"
+                              Restored="Window_Restored"
+                              ShowWindowControls="False"
                               SizeChanged="Window_SizeChanged"
                               SourceInitialized="Window_SourceInitialized"
                               StateChanged="Window_StateChanged"
-                              KeyDown="Window_KeyDown"
-                              PreviewKeyDown="Window_PreviewKeyDown"
-                              ApplyDefaultButtonColors="False"
-                              ShowWindowControls="False"
-                              MouseDown="Window_MouseDown">
+                              TitleBarHeight="48"
+                              mc:Ignorable="d">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -43,91 +43,106 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <!-- Resources -->
+    <!--  Resources  -->
     <dc:Windows10BorderlessWindow.Resources>
         <ResourceDictionary>
-            <!-- Tray icon context menu -->
+            <!--  Tray icon context menu  -->
             <ContextMenu x:Key="TrayIconContextMenu" Placement="MousePoint">
-                <MenuItem x:Name="TrayIconContextMenuAppName" Header="{DynamicResource Language_Show_Dopamine}" FontWeight="Bold" Click="TrayIconContextMenuAppName_Click"/>
-                <Separator/>
-                <MenuItem x:Name="TrayIconContextMenuExit" Header="{DynamicResource Language_Exit}" Click="TrayIconContextMenuExit_Click"/>
+                <MenuItem x:Name="TrayIconContextMenuAppName"
+                          Click="TrayIconContextMenuAppName_Click"
+                          FontWeight="Bold"
+                          Header="{DynamicResource Language_Show_Dopamine}" />
+                <Separator />
+                <MenuItem x:Name="TrayIconContextMenuExit"
+                          Click="TrayIconContextMenuExit_Click"
+                          Header="{DynamicResource Language_Exit}" />
             </ContextMenu>
         </ResourceDictionary>
     </dc:Windows10BorderlessWindow.Resources>
 
     <!--<dc:Windows10BorderlessWindow.WindowCommands>
-        --><!-- Mini Player switch button --><!--
-        <Button 
-                x:Name="PART_MiniPlayerButton" 
-                Style="{StaticResource WindowButton}" 
-                Width="45" 
-                Height="29" 
-                BorderBrush="{x:Null}" 
-                BorderThickness="0" 
-                Background="{x:Null}" 
-                ToolTip="{DynamicResource Language_Mini_Player}" 
+    -->
+    <!--  Mini Player switch button  -->
+    <!--
+        <Button
+                x:Name="PART_MiniPlayerButton"
+                Style="{StaticResource WindowButton}"
+                Width="45"
+                Height="29"
+                BorderBrush="{x:Null}"
+                BorderThickness="0"
+                Background="{x:Null}"
+                ToolTip="{DynamicResource Language_Mini_Player}"
                 Command="{x:Static cp:ApplicationCommands.TogglePlayerCommand}">
             <Path x:Name="Icon" Data="{StaticResource MiniPlayer}"
-                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" 
-                                HorizontalAlignment="center" 
+                                Fill="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+                                HorizontalAlignment="center"
                                 VerticalAlignment="Center"
-                                UseLayoutRounding="False" 
+                                UseLayoutRounding="False"
                                 SnapsToDevicePixels="True"/>
         </Button>
     </dc:Windows10BorderlessWindow.WindowCommands>-->
 
-    <!--  TaskbarItemInfo -->
+    <!--  TaskbarItemInfo  -->
     <dc:Windows10BorderlessWindow.TaskbarItemInfo>
-        <TaskbarItemInfo x:Name="TaskBarItemInfo" 
-                         ThumbnailClipMargin="0 0 0 0" 
-                         Description="{Binding TaskbarService.Description}" 
-                         ProgressValue="{Binding TaskbarService.ProgressValue}" 
-                         ProgressState="{Binding TaskbarService.ProgressState}">
+        <TaskbarItemInfo x:Name="TaskBarItemInfo"
+                         Description="{Binding TaskbarService.Description}"
+                         ProgressState="{Binding TaskbarService.ProgressState}"
+                         ProgressValue="{Binding TaskbarService.ProgressValue}"
+                         ThumbnailClipMargin="0,0,0,0">
             <TaskbarItemInfo.ThumbButtonInfos>
                 <ThumbButtonInfoCollection>
-                    <ThumbButtonInfo
-                   x:Name="ThumbButtonInfoPrevious"
-                   Command="{Binding PlayPreviousCommand}"
-                   Description="{DynamicResource Language_Previous}"
-                   ImageSource="/Icons/TaskbarItemInfo_Previous.ico" />
-                    <ThumbButtonInfo
-                   x:Name="ThumbButtonInfoPlayPause"
-                   Command="{Binding PlayOrPauseCommand}"
-                   Description="{Binding TaskbarService.PlayPauseText}"
-                   ImageSource="{Binding TaskbarService.PlayPauseIcon}"/>
-                    <ThumbButtonInfo
-                   x:Name="ThumbButtonInfoNext"
-                   Command="{Binding PlayNextCommand}"
-                   Description="{DynamicResource Language_Next}"
-                   ImageSource="/Icons/TaskbarItemInfo_Next.ico"/>
+                    <ThumbButtonInfo x:Name="ThumbButtonInfoPrevious"
+                                     Command="{Binding PlayPreviousCommand}"
+                                     Description="{DynamicResource Language_Previous}"
+                                     ImageSource="/Icons/TaskbarItemInfo_Previous.ico" />
+                    <ThumbButtonInfo x:Name="ThumbButtonInfoPlayPause"
+                                     Command="{Binding PlayOrPauseCommand}"
+                                     Description="{Binding TaskbarService.PlayPauseText}"
+                                     ImageSource="{Binding TaskbarService.PlayPauseIcon}" />
+                    <ThumbButtonInfo x:Name="ThumbButtonInfoNext"
+                                     Command="{Binding PlayNextCommand}"
+                                     Description="{DynamicResource Language_Next}"
+                                     ImageSource="/Icons/TaskbarItemInfo_Next.ico" />
                 </ThumbButtonInfoCollection>
             </TaskbarItemInfo.ThumbButtonInfos>
         </TaskbarItemInfo>
     </dc:Windows10BorderlessWindow.TaskbarItemInfo>
 
     <Border x:Name="WindowBorder" BorderBrush="{DynamicResource Brush_Accent}">
-        <Grid Focusable="true" x:Name="WindowGrid">
-            <Border x:Name="ClosingBorder" Panel.ZIndex="1" Visibility="Collapsed" Opacity="0" Background="{DynamicResource Brush_WindowHeaderBackground}">
+        <Grid x:Name="WindowGrid" Focusable="true">
+            <Border x:Name="ClosingBorder"
+                    Panel.ZIndex="1"
+                    Background="{DynamicResource Brush_WindowHeaderBackground}"
+                    Opacity="0"
+                    Visibility="Collapsed">
                 <Border.Resources>
                     <Storyboard x:Key="ClosingAnimation">
-                        <DoubleAnimation Storyboard.TargetName="ClosingBorder" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" BeginTime="0:0:0.5" Duration="0:0:0.3" />
+                        <DoubleAnimation BeginTime="0:0:0.5"
+                                         Storyboard.TargetName="ClosingBorder"
+                                         Storyboard.TargetProperty="Opacity"
+                                         From="0.0"
+                                         To="1.0"
+                                         Duration="0:0:0.3" />
                     </Storyboard>
                 </Border.Resources>
-                <Viewbox StretchDirection="DownOnly" Margin="10">
-                    <TextBlock 
-                x:Name="ClosingText"
-                Text="{DynamicResource Language_See_You_Later}" 
-                Foreground="{DynamicResource Brush_PrimaryText}" 
-                FontWeight="Light"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                TextWrapping="Wrap"
-                FontSize="30"/>
+                <Viewbox Margin="10" StretchDirection="DownOnly">
+                    <TextBlock x:Name="ClosingText"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="30"
+                               FontWeight="Light"
+                               Foreground="{DynamicResource Brush_PrimaryText}"
+                               Text="{DynamicResource Language_See_You_Later}"
+                               TextWrapping="Wrap" />
                 </Viewbox>
             </Border>
             <Border Panel.ZIndex="0" Background="{DynamicResource Brush_MainWindowBackground}">
-                <pc:TransitioningContentControl Panel.ZIndex="0" x:Name="PlayerTypeRegion" FadeIn="True" FadeInTimeout="0.5" 
-                                            prism:RegionManager.RegionName="{x:Static cp:RegionNames.PlayerTypeRegion}"/>
+                <pc:TransitioningContentControl x:Name="PlayerTypeRegion"
+                                                Panel.ZIndex="0"
+                                                prism:RegionManager.RegionName="{x:Static cp:RegionNames.PlayerTypeRegion}"
+                                                FadeIn="True"
+                                                FadeInTimeout="0.5" />
             </Border>
         </Grid>
     </Border>

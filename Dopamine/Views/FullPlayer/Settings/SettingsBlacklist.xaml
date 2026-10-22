@@ -1,21 +1,35 @@
 ﻿<UserControl x:Class="Dopamine.Views.FullPlayer.Settings.SettingsBlacklist"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF"
-             xmlns:utils="clr-namespace:Dopamine.Utils"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             prismMvvm:ViewModelLocator.AutoWireViewModel="True">
+             xmlns:utils="clr-namespace:Dopamine.Utils"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5" Padding="15" PanningMode="Both">
+    <ScrollViewer Margin="5"
+                  Padding="15"
+                  PanningMode="Both"
+                  VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <Label Style="{StaticResource TitleLabel}" Content="{DynamicResource Language_Blacklist}" />
-            <TextBlock Margin="0,5,0,0" Text="{DynamicResource Language_Songs_In_Blacklist_Will_Be_Skipped}" Foreground="{DynamicResource Brush_PrimaryText}"/>
-            <Button Style="{StaticResource RegularButton}" HorizontalAlignment="Left" MinWidth="100" Margin="0,10,0,0" Content="{DynamicResource Language_Clear_Blacklist}" Command="{Binding ClearBlacklistCommand}"/>
-            <ListBox x:Name="ListBoxBlackList" Margin="0,10,0,0" Style="{StaticResource ListBoxBlacklistTracks}" ItemsSource="{Binding BlacklistTracks}"/>
+            <Label Content="{DynamicResource Language_Blacklist}" Style="{StaticResource TitleLabel}" />
+            <TextBlock Margin="0,5,0,0"
+                       Foreground="{DynamicResource Brush_PrimaryText}"
+                       Text="{DynamicResource Language_Songs_In_Blacklist_Will_Be_Skipped}" />
+            <Button MinWidth="100"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding ClearBlacklistCommand}"
+                    Content="{DynamicResource Language_Clear_Blacklist}"
+                    Style="{StaticResource RegularButton}" />
+            <ListBox x:Name="ListBoxBlackList"
+                     Margin="0,10,0,0"
+                     ItemsSource="{Binding BlacklistTracks}"
+                     Style="{StaticResource ListBoxBlacklistTracks}" />
         </StackPanel>
     </ScrollViewer>
 </UserControl>

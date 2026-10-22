@@ -1,59 +1,112 @@
 ﻿<UserControl x:Class="Dopamine.Views.Common.ArtistInfoControl"
-             x:Name="ThisControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dc="clr-namespace:Digimezzo.Foundation.WPF.Controls;assembly=Digimezzo.Foundation.WPF"
-             xmlns:pv="clr-namespace:Dopamine.ViewModels"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:prismMvvm="clr-namespace:Prism.Mvvm;assembly=Prism.Wpf"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             prismMvvm:ViewModelLocator.AutoWireViewModel="True">
+             xmlns:pv="clr-namespace:Dopamine.ViewModels"
+             x:Name="ThisControl"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d">
 
     <UserControl.Resources>
         <Storyboard x:Key="FadeIn">
             <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:0" From="0.5" To="1" Duration="0:0:0.15" />
+                <DoubleAnimation BeginTime="0:0:0"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0.5"
+                                 To="1"
+                                 Duration="0:0:0.15" />
             </Storyboard>
         </Storyboard>
         <Storyboard x:Key="FadeOut">
             <Storyboard>
-                <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:0" From="1" To="0.5" Duration="0:0:0.15" />
+                <DoubleAnimation BeginTime="0:0:0"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="1"
+                                 To="0.5"
+                                 Duration="0:0:0.15" />
             </Storyboard>
         </Storyboard>
         <DataTemplate DataType="{x:Type pv:ArtistInfoViewModel}">
             <DockPanel>
                 <StackPanel>
                     <Grid DockPanel.Dock="Left">
-                        <Image Margin="20" MaxHeight="300" MaxWidth="300" Source="{Binding Image}" Visibility="{Binding HasImage, Converter={StaticResource BooleanToCollapsedConverter}}" RenderOptions.BitmapScalingMode="HighQuality">
+                        <Image MaxWidth="300"
+                               MaxHeight="300"
+                               Margin="20"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               Source="{Binding Image}"
+                               Visibility="{Binding HasImage, Converter={StaticResource BooleanToCollapsedConverter}}">
                             <Image.Effect>
-                                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="{DynamicResource Color_Black}" Opacity="{DynamicResource Opacity_CoverArtShadow}"/>
+                                <DropShadowEffect BlurRadius="20"
+                                                  Opacity="{DynamicResource Opacity_CoverArtShadow}"
+                                                  ShadowDepth="0"
+                                                  Color="{DynamicResource Color_Black}" />
                             </Image.Effect>
                         </Image>
-                        <Border Margin="20" Width="200" Height="200" Background="{DynamicResource Brush_CoverTileBackground}" Visibility="{Binding HasImage, Converter={StaticResource InvertingBooleanToCollapsedConverter}}">
+                        <Border Width="200"
+                                Height="200"
+                                Margin="20"
+                                Background="{DynamicResource Brush_CoverTileBackground}"
+                                Visibility="{Binding HasImage, Converter={StaticResource InvertingBooleanToCollapsedConverter}}">
                             <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="{DynamicResource Color_Black}" Opacity="{DynamicResource Opacity_CoverArtShadow}"/>
+                                <DropShadowEffect BlurRadius="20"
+                                                  Opacity="{DynamicResource Opacity_CoverArtShadow}"
+                                                  ShadowDepth="0"
+                                                  Color="{DynamicResource Color_Black}" />
                             </Border.Effect>
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="&#xE13D;" FontSize="100" Style="{StaticResource SegoeAssets}" Foreground="{DynamicResource Brush_CoverTileIcon}"/>
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontSize="100"
+                                       Foreground="{DynamicResource Brush_CoverTileIcon}"
+                                       Style="{StaticResource SegoeAssets}"
+                                       Text="&#xE13D;" />
                         </Border>
                     </Grid>
-                    <TextBlock Margin="20,0,0,0" Text="{Binding ArtistName}" FontSize="22" FontWeight="Light" Foreground="{DynamicResource Brush_PrimaryText}"/>
+                    <TextBlock Margin="20,0,0,0"
+                               FontSize="22"
+                               FontWeight="Light"
+                               Foreground="{DynamicResource Brush_PrimaryText}"
+                               Text="{Binding ArtistName}" />
                 </StackPanel>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20,15,10,0" PanningMode="Both">
+                <ScrollViewer Padding="20,15,10,0"
+                              PanningMode="Both"
+                              VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10,0,0,0">
-                        <Label Margin="0,0,0,20" Style="{StaticResource TitleLabel}" Content="{DynamicResource Language_Biography}" />
+                        <Label Margin="0,0,0,20"
+                               Content="{DynamicResource Language_Biography}"
+                               Style="{StaticResource TitleLabel}" />
                         <Grid>
                             <StackPanel>
-                                <TextBlock TextWrapping="Wrap" Foreground="{DynamicResource Brush_PrimaryText}" Text="{Binding Path=CleanedBiographyContent}" Visibility="{Binding HasBiography, Converter={StaticResource BooleanToCollapsedConverter}}"/>
-                                <Button Margin="0,10,0,0" Style="{StaticResource LinkButton}" Foreground="{DynamicResource Brush_PrimaryText}" Content="{Binding UrlText}" Command="{Binding OpenLinkCommand}" CommandParameter="{Binding Path=Url}"/>
+                                <TextBlock Foreground="{DynamicResource Brush_PrimaryText}"
+                                           Text="{Binding Path=CleanedBiographyContent}"
+                                           TextWrapping="Wrap"
+                                           Visibility="{Binding HasBiography, Converter={StaticResource BooleanToCollapsedConverter}}" />
+                                <Button Margin="0,10,0,0"
+                                        Command="{Binding OpenLinkCommand}"
+                                        CommandParameter="{Binding Path=Url}"
+                                        Content="{Binding UrlText}"
+                                        Foreground="{DynamicResource Brush_PrimaryText}"
+                                        Style="{StaticResource LinkButton}" />
                             </StackPanel>
-                            <TextBlock Foreground="{DynamicResource Brush_PrimaryText}" Text="{DynamicResource Language_Not_Available}" Visibility="{Binding HasBiography, Converter={StaticResource InvertingBooleanToCollapsedConverter}}"/>
+                            <TextBlock Foreground="{DynamicResource Brush_PrimaryText}"
+                                       Text="{DynamicResource Language_Not_Available}"
+                                       Visibility="{Binding HasBiography, Converter={StaticResource InvertingBooleanToCollapsedConverter}}" />
                         </Grid>
-                        <Label Margin="0,20,0,20" Style="{StaticResource TitleLabel}" Content="{DynamicResource Language_Similar}" />
+                        <Label Margin="0,20,0,20"
+                               Content="{DynamicResource Language_Similar}"
+                               Style="{StaticResource TitleLabel}" />
                         <Grid>
-                            <ListBox Style="{StaticResource ListBoxSimilarArtists}" ItemsSource="{Binding SimilarArtists}" Visibility="{Binding HasSimilarArtists, Converter={StaticResource BooleanToCollapsedConverter}}"/>
-                            <TextBlock Foreground="{DynamicResource Brush_PrimaryText}" Text="{DynamicResource Language_Not_Available}" Visibility="{Binding HasSimilarArtists, Converter={StaticResource InvertingBooleanToCollapsedConverter}}"/>
+                            <ListBox ItemsSource="{Binding SimilarArtists}"
+                                     Style="{StaticResource ListBoxSimilarArtists}"
+                                     Visibility="{Binding HasSimilarArtists, Converter={StaticResource BooleanToCollapsedConverter}}" />
+                            <TextBlock Foreground="{DynamicResource Brush_PrimaryText}"
+                                       Text="{DynamicResource Language_Not_Available}"
+                                       Visibility="{Binding HasSimilarArtists, Converter={StaticResource InvertingBooleanToCollapsedConverter}}" />
                         </Grid>
                     </StackPanel>
                 </ScrollViewer>
@@ -62,35 +115,34 @@
     </UserControl.Resources>
 
     <Grid>
-        <dc:SlidingContentControl 
-        Panel.ZIndex="0" 
-        Width="{Binding ActualWidth,ElementName=ThisControl}" 
-        Height="{Binding ActualHeight,ElementName=ThisControl}" 
-        EasingAmplitude="0" 
-        SlideDirection="{Binding SlideDirection}" 
-        Content="{Binding ArtistInfoViewModel}">
+        <dc:SlidingContentControl Width="{Binding ActualWidth, ElementName=ThisControl}"
+                                  Height="{Binding ActualHeight, ElementName=ThisControl}"
+                                  Panel.ZIndex="0"
+                                  Content="{Binding ArtistInfoViewModel}"
+                                  EasingAmplitude="0"
+                                  SlideDirection="{Binding SlideDirection}">
             <dc:SlidingContentControl.Style>
                 <Style>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding IsBusy}" Value="True">
                             <DataTrigger.EnterActions>
-                                <BeginStoryboard Storyboard ="{StaticResource FadeOut}"/>
+                                <BeginStoryboard Storyboard="{StaticResource FadeOut}" />
                             </DataTrigger.EnterActions>
                             <DataTrigger.ExitActions>
-                                <BeginStoryboard Storyboard ="{StaticResource FadeIn}"/>
+                                <BeginStoryboard Storyboard="{StaticResource FadeIn}" />
                             </DataTrigger.ExitActions>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </dc:SlidingContentControl.Style>
         </dc:SlidingContentControl>
-        <dc:ProgressRing Panel.ZIndex="1" 
-                         Width="60" 
-                         Height="60" 
+        <dc:ProgressRing Width="60"
+                         Height="60"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Center"
-                         Foreground="{DynamicResource Brush_Accent}" 
-                         IsActive="{Binding IsBusy}" 
-                         Visibility="{Binding IsBusy,Converter={StaticResource BooleanToCollapsedConverter}}"/>
+                         Panel.ZIndex="1"
+                         Foreground="{DynamicResource Brush_Accent}"
+                         IsActive="{Binding IsBusy}"
+                         Visibility="{Binding IsBusy, Converter={StaticResource BooleanToCollapsedConverter}}" />
     </Grid>
 </UserControl>
