@@ -11,6 +11,7 @@ Version numbers retain the original upstream and DIY release labels.
 
 - Added full-pinyin search for Chinese text across existing searchable fields
 - Added romaji search for Japanese text, including kanji
+- Added click-to-copy for song titles, artists, and album names in playback information, with a hand cursor on hover
 
 ### Changed
 
