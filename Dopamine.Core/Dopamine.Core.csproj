@@ -38,20 +38,16 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <!-- The local build includes the FFT synchronization fix (filoe/cscore@7067a753), absent from NuGet 1.2.1.2. -->
     <Reference Include="CSCore">
       <HintPath>..\Dopamine\Libraries\CSCore.dll</HintPath>
     </Reference>
+    <!-- The local build includes the 32-bit callback fix (filoe/cscore#337), absent from NuGet 1.2.0-beta1. -->
     <Reference Include="CSCore.Ffmpeg">
       <HintPath>..\Dopamine\Libraries\CSCore.Ffmpeg.dll</HintPath>
     </Reference>
     <Reference Include="Digimezzo.Foundation.WPF">
       <HintPath>..\Dopamine\Libraries\Digimezzo.Foundation.WPF.dll</HintPath>
-    </Reference>
-    <Reference Include="GongSolutions.WPF.DragDrop">
-      <HintPath>..\Dopamine\Libraries\GongSolutions.WPF.DragDrop.dll</HintPath>
-    </Reference>
-    <Reference Include="NVorbis">
-      <HintPath>..\Dopamine\Libraries\NVorbis.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -97,12 +93,12 @@
     <PackageReference Include="CommonServiceLocator" Version="2.0.3" />
     <PackageReference Include="DiscordRichPresence" Version="1.0.175" />
     <PackageReference Include="EzPinyin" Version="1.1.2" />
+    <PackageReference Include="gong-wpf-dragdrop" Version="1.1.0" />
     <PackageReference Include="LibNMeCab" Version="0.10.2" />
     <PackageReference Include="LibNMeCab.IpaDicBin" Version="0.10.0" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="9.0.7" />
     <PackageReference Include="MyNihongo.KanaConverter" Version="1.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Prism.Core" Version="7.0.0.396" />
-    <PackageReference Include="Unity" Version="4.0.1" />
   </ItemGroup>
 </Project>

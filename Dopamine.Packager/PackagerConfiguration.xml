@@ -19,7 +19,7 @@
         <Directory>x86</Directory>
         <Directory>FFmpeg\bin\windows\x64</Directory>
         <Directory>FFmpeg\bin\windows\x86</Directory>
-		<Directory>Tools</Directory>
+        <Directory>Tools</Directory>
       </Directories>
       <Files>
         <File>Dopamine.exe</File>
@@ -39,27 +39,25 @@
         <File>Dopamine.Services.dll</File>
         <File>CSCore.dll</File>
         <File>CSCore.Ffmpeg.dll</File>
-        <File>Ionic.Zip.dll</File>
         <File>SQLite-net.dll</File>
         <File>SQLitePCLRaw.batteries_green.dll</File>
         <File>SQLitePCLRaw.batteries_v2.dll</File>
         <File>SQLitePCLRaw.core.dll</File>
         <File>SQLitePCLRaw.provider.e_sqlite3.dll</File>
         <File>System.Windows.Interactivity.dll</File>
-        <File>taglib-sharp.dll</File>
+        <File>TagLibSharp.dll</File>
         <File>WPFFolderBrowser.dll</File>
         <File>CommonServiceLocator.dll</File>
         <File>DryIoc.dll</File>
         <File>Newtonsoft.Json.dll</File>
-        <File>NVorbis.dll</File>
         <File>DiscordRPC.dll</File>
         <File>Colourful.dll</File>
-		<File>MyNihongo.KanaConverter.dll</File>
-	    <File>EzPinyin.dll</File>
-	    <File>LibNMeCab.dll</File>
-	    <File>LibNMeCab.IpaDicBin.dll</File>
-		<File>Microsoft.Extensions.ObjectPool.dll</File>
-	  </Files>
+        <File>MyNihongo.KanaConverter.dll</File>
+        <File>EzPinyin.dll</File>
+        <File>LibNMeCab.dll</File>
+        <File>LibNMeCab.IpaDicBin.dll</File>
+        <File>Microsoft.Extensions.ObjectPool.dll</File>
+      </Files>
     </Portable>
   </Packaging>
 </Packager>

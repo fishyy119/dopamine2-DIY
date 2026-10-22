@@ -27,14 +27,6 @@ namespace Dopamine.Core.Base
             },
             new ExternalComponent
             {
-                Name = "DotNetZip",
-                Description =
-                    "A FAST, FREE class library and toolset for manipulating zip files. Use VB, C# or any .NET language to easily create, extract, or update zip files.",
-                Url = "http://dotnetzip.codeplex.com",
-                LicenseUrl = "http://dotnetzip.codeplex.com/license"
-            },
-            new ExternalComponent
-            {
                 Name = "DryIoc",
                 Description = "DryIoc is fast, small, full-featured IoC Container for .NET",
                 Url = "https://bitbucket.org/dadhi/dryioc",
@@ -67,12 +59,6 @@ namespace Dopamine.Core.Base
                 Description = "Popular high-performance JSON framework for .NET",
                 Url = "https://github.com/JamesNK/Newtonsoft.Json",
                 LicenseUrl = "https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md"
-            },
-            new ExternalComponent {
-                Name = "NVorbis",
-                Description = "A .NET library for decoding Xiph.org Vorbis files.",
-                Url = "https://github.com/ioctlLR/NVorbis",
-                LicenseUrl = "https://github.com/ioctlLR/NVorbis/blob/master/LICENSE"
             },
             new ExternalComponent {
                 Name = "Prism",

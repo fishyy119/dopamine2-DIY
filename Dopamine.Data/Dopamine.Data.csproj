@@ -46,9 +46,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="taglib-sharp">
-      <HintPath>..\Dopamine\Libraries\taglib-sharp.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Dopamine\SharedAssemblyInfo.cs">
@@ -91,5 +88,7 @@
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.osx" Version="1.1.9" />
     <PackageReference Include="SQLitePCLRaw.lib.e_sqlite3.v110_xp" Version="1.1.9" />
     <PackageReference Include="SQLitePCLRaw.provider.e_sqlite3.net45" Version="1.1.9" />
+    <!-- Includes the corrupt MP3 header fix from mono/taglib-sharp#134. -->
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
   </ItemGroup>
 </Project>
